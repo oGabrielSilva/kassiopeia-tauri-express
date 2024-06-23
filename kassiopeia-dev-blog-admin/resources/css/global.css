@@ -1,0 +1,44 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-size: 14px;
+  min-height: 100vh;
+}
+
+body,
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+#app {
+  flex: 1;
+}
+
+.g-05 {
+  gap: 0.5rem;
+}
+
+.g-1 {
+  gap: 1rem;
+}
+
+.bar-container {
+  min-height: 48px;
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar-burger[data-ui-burger-button] {
+    display: inline-flex;
+  }
+}

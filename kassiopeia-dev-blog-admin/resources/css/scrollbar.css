@@ -1,0 +1,19 @@
+::-webkit-scrollbar {
+  width: 8px;
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bulma-scheme-main);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--bulma-grey-dark);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bulma-grey-darker);
+}

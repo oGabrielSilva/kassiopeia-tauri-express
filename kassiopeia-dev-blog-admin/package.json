@@ -1,0 +1,38 @@
+{
+  "name": "kassiopeia-dev-blog-admin",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "tauri": "tauri"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.5.2",
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
+    "@tauri-apps/api": "^1",
+    "kassiopeia-tools": "^1.5.2",
+    "pinia": "^2.1.7",
+    "vue": "^3.3.4",
+    "vue-router": "4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.5.0",
+    "@tauri-apps/cli": "^1",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "eslint": "9.x",
+    "eslint-plugin-vue": "^9.26.0",
+    "globals": "^15.6.0",
+    "prettier": "^3.3.2",
+    "typescript": "^5.0.2",
+    "typescript-eslint": "^7.13.1",
+    "vite": "^5.0.0",
+    "vue-tsc": "^1.8.5"
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+}
