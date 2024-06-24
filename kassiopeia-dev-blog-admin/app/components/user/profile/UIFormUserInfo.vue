@@ -93,6 +93,8 @@ import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import type { ISessionResponse } from '@app/auth/types'
 import { useNextAvatar } from '@app/composables/useNextAvatar'
+import { isForbidden } from '@app/utilities/isForbidden'
+import { forbidden } from '@app/utilities/forbidden'
 
 const strings = useI18n()
 
@@ -153,6 +155,11 @@ async function onSubmit(e: Event) {
     const response = await JsonAPI.request.PATCH<ISessionResponse>('/user', {
       body: payload,
     })
+    if (isForbidden(response.response)) {
+      forbidden()
+      return
+    }
+
     if (response.error) {
       return toaster.danger(response.error.message)
     }

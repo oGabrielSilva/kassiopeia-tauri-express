@@ -2522,3 +2522,7 @@ Raw query failed. Code: `unknown`. Message: `Kind: Command failed: Error code 80
 [Sun, 23 Jun 2024 17:37:38 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /http://127.0.0.1:3001/users/avatar/6671f141e0f2af8e78f2da25 [#method]: GET [#original]: 
 [Sun, 23 Jun 2024 17:37:38 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /http://127.0.0.1:3001/users/avatar/6671f141e0f2af8e78f2da25 [#method]: GET [#original]: 
 [Sun, 23 Jun 2024 17:37:38 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /http://127.0.0.1:3001/users/avatar/6671f141e0f2af8e78f2da25 [#method]: GET [#original]: 
+[Sun, 23 Jun 2024 23:24:28 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Mon, 24 Jun 2024 02:19:58 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Mon, 24 Jun 2024 21:36:21 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Mon, 24 Jun 2024 21:59:12 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/social/1719259586067 [#method]: DELETE [#original]: 

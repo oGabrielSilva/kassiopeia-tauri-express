@@ -26,12 +26,15 @@ export default {
     passwordHelper:
       'Digite uma senha válida. Mínimo de 8 caracteres, um número e pelo menos uma letra maiúscula e minúscula',
     passwordWarn: 'Digite uma senha válida',
+    sessionInSuccessfully: 'Sessão atualizada',
+    expired: 'Sua sessão expirou. Faça login novamente',
   },
   name: 'Nome',
   bio: 'Bio',
   saveChanges: 'Salvar alterações',
   save: 'Salvar',
   cancel: 'Cancelar',
+  actionSuccess: 'Ação realizada com sucesso',
 
   profilePage: {
     profile: 'Você',
@@ -53,4 +56,20 @@ export default {
     linksEmpty: 'Você ainda não adicionou nenhum link',
   },
   modalAddLinkTitle: 'Adicione um novo link',
+
+  linkNameLabel: 'Este link se refere ao quê?',
+  linkNamePlaceholder: 'Meu site',
+  linkURLPlaceholder: 'https://gabrielhenriquedasilva.vercel.app',
+
+  genericFieldInvalid: 'Campo inválido',
+  urlInvalid: 'URL precisa ser válida',
+  urlAlreadyRegisterd:
+    'Você já tem uma URL cadastrada com o mesmo nome nas suas redes',
+  url: 'URL',
+  actions: 'Ações',
+  modalRemoveSocialLinkTitle: 'Remover link?',
+  'yes-remove': 'Sim, remover',
+  'no-cancel': 'Não, cancelar',
+
+  removeSocialURLModalBody: 'Esta ação removerá a URL social intitulada',
 }

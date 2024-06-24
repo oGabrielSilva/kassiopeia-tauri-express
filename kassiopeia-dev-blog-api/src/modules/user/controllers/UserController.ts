@@ -1,4 +1,4 @@
-import type { User } from '@prisma/client';
+import type { SocialMedia, User } from '@prisma/client';
 import { DBClient } from '@/db/DBClient';
 import { BadRequest } from '@/exceptions/class/BadRequest';
 import { Conflict } from '@/exceptions/class/Conflict';
@@ -77,7 +77,10 @@ export class UserController {
 
   public static async partialUpdate(req: IRequest<User>, res: IResponse) {
     if (!req.body) throw new BadRequest(res.locals.i18n?.bodyInvalid);
-    const { bio, name, social } = req.body;
+
+    const { bio, name } = req.body;
+    const social = req.body.social as unknown as SocialMedia;
+
     if (!bio && !name && !social) throw new BadRequest(res.locals.i18n?.partialUpdateEmpty);
 
     const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
@@ -91,14 +94,23 @@ export class UserController {
       payload.bio = bio;
     }
 
-    if (social && Array.isArray(social)) {
-      payload.social = [];
-      social.forEach((item) => {
-        const exists = user.social.find((s) => s.name === item.name);
-        if (!exists) payload.social.push(item);
-      });
+    if (social && typeof social.name === 'string' && typeof social.uri === 'string') {
+      let exists = false;
+      for (const key in user.social) {
+        if (Object.prototype.hasOwnProperty.call(user.social, key)) {
+          if (user.social[key].id === social.id) {
+            user.social[key].name = social.name;
+            user.social[key].uri = social.uri;
+            exists = true;
+            break;
+          }
+        }
+      }
 
-      if (payload.social.length === 0) delete (payload as unknown as { social?: [] }).social;
+      payload.social = user.social;
+      if (!exists) {
+        payload.social.push(social);
+      }
     }
 
     const data = await UserService.service.db.user.update({
@@ -150,8 +162,6 @@ export class UserController {
 
   public static async getAvatar(req: IRequest, res: IResponse) {
     const { id } = req.params;
-
-    console.log({ id });
 
     const body = await ImageUploadService.service.require(UserController.AVATAR_PATH + '/' + id);
     if (!body) throw new NotFound(res.locals.i18n?.exceptions[404]);

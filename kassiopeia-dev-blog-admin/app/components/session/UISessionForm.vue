@@ -69,6 +69,11 @@ import { JsonAPI } from '@app/utilities/JsonAPI'
 import { useAuth } from '@app/stores/useAuth'
 import type { ISessionResponse } from '@app/auth/types'
 import { User } from '@app/auth/models/User'
+import { emit } from '@tauri-apps/api/event'
+import app from '@resources/config/app.json'
+import { appWindow } from '@tauri-apps/api/window'
+
+const isForbidden = location.search.indexOf('forbidden=true') > -1
 
 const auth = useAuth()
 const strings = useI18n()
@@ -86,11 +91,21 @@ const methods = reactive({
   signUp: async () => {},
 })
 
+if (auth.isLoggedIn) {
+  router.push('/')
+}
+
+watch(auth, () => {
+  if (auth.isLoggedIn) router.push('/')
+})
+
 onMounted(async () => {
   const validation = await kassiopeia.requireKassiopeiaValidation()
   const toaster = await kassiopeia.requireKassiopeiaToaster()
   const animation = await kassiopeia.requireKassiopeiaAnimation()
   const locker = await kassiopeia.requireKassiopeiaScreenLocker()
+
+  if (isForbidden) toaster.danger(strings.session.expired, 3000)
 
   methods.onEmailImputed = (newEmail: string) => {
     email.value = newEmail
@@ -154,6 +169,12 @@ onMounted(async () => {
 
       if (result.body && result.body.token && result.body.user) {
         const { token, user } = result.body
+        if (isForbidden) {
+          emit(app.sessionEventAnotherWindowKey, { token, user })
+
+          await appWindow.close()
+          return
+        }
         auth.update(User.from(user), token)
       }
     } catch (error) {
@@ -163,14 +184,6 @@ onMounted(async () => {
       locker.unlock()
     }
   }
-})
-
-if (auth.isLoggedIn) {
-  router.push('/')
-}
-
-watch(auth, () => {
-  if (auth.isLoggedIn) router.push('/')
 })
 </script>
 

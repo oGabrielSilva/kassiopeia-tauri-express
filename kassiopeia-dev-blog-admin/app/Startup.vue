@@ -28,10 +28,30 @@
 import UITopAppBar from '@app/components/shared/UITopAppBar.vue'
 import UIAppBar from '@app/components/home/UIAppBar.vue'
 import UIFooter from '@app/components/shared/UIFooter.vue'
-import { useLayout } from './stores/useLayout'
+import { useLayout } from '@app/stores/useLayout'
 import UIUserPageAppBar from '@app/components/user/UIUserPageAppBar.vue'
+import { useAuth } from '@app/stores/useAuth'
+import { listen } from '@tauri-apps/api/event'
+import type { ISessionResponse } from '@app/auth/types'
+import app from '@resources/config/app.json'
+import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
+import { useI18n } from './stores/useI18n'
 
 const layout = useLayout()
+
+listen(app.sessionEventAnotherWindowKey, async (e) => {
+  const { user, token } = e.payload as ISessionResponse
+
+  if (typeof token === 'string' && typeof user === 'object') {
+    const auth = useAuth()
+    const strings = useI18n()
+
+    const toaster = await requireKassiopeiaToaster()
+    auth.update(user, token)
+
+    toaster.success(strings.session.sessionInSuccessfully)
+  }
+})
 </script>
 
 <style scoped>

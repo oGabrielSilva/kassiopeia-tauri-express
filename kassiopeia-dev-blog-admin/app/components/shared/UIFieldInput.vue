@@ -16,7 +16,7 @@
       <slot name="icon" />
     </div>
     <p
-      v-if="props.helper && props.helper.isVisible"
+      v-if="!!(props.helper && props.helper.isVisible && props.helper.text)"
       :id="props.inputId + '-helper'"
       class="help is-danger"
     >
@@ -36,7 +36,7 @@ interface IFieldInputProps {
   name?: string
   type: InputTypeHTMLAttribute
   placeholder?: string
-  helper?: { isVisible: boolean; text: string }
+  helper?: { isVisible: boolean; text?: string }
 }
 
 const input = ref<HTMLInputElement>()

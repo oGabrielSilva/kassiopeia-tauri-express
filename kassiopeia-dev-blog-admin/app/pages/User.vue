@@ -33,7 +33,7 @@
       </div>
 
       <UIFormUserInfo v-show="tab === 'YOU'" />
-      <UIFormSocial v-show="tab === 'SOCIAL'" />
+      <UISocialTab v-show="tab === 'SOCIAL'" />
     </section>
   </UITopAppBarSafeArea>
 </template>
@@ -41,10 +41,10 @@
 <script setup lang="ts">
 import UITopAppBarSafeArea from '@app/components/shared/UITopAppBarSafeArea.vue'
 import UIFormUserInfo from '@app/components/user/profile/UIFormUserInfo.vue'
-import UIFormSocial from '@app/components/user/profile/UIFormSocial.vue'
 import { useLayout } from '@app/composables/useLayout'
 import { useI18n } from '@app/stores/useI18n'
 import { ref } from 'vue'
+import UISocialTab from '@app/components/user/profile/UISocialTab.vue'
 
 const strings = useI18n()
 const tab = ref<'YOU' | 'SOCIAL' | 'SECURITY'>('YOU')
