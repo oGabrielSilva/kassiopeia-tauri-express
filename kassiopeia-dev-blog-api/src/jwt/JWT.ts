@@ -11,6 +11,7 @@ interface ITokenPayload {
   aud: string;
   iss: string;
   sub: string;
+  id: string;
 }
 
 export class JWT {
@@ -24,6 +25,7 @@ export class JWT {
     return new Promise<string>((resolve) => {
       jsonwebtoken.sign(
         {
+          id: user.id,
           authorities: user.getAuthorities(),
           name: user.name,
           isEmailChecked: user.isEmailChecked,

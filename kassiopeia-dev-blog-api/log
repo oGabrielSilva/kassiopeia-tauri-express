@@ -2539,3 +2539,88 @@ Raw query failed. Code: `unknown`. Message: `Kind: Command failed: Error code 80
 [Wed, 26 Jun 2024 21:13:38 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Wed, 26 Jun 2024 23:37:50 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Thu, 27 Jun 2024 00:39:01 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 01:02:55 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 01:44:38 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 02:08:35 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 02:17:24 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 02:40:00 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 02:46:53 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 02:59:44 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 03:04:45 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 03:26:19 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 04:25:18 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:20:45 GMT] [#ID]: BadRequest [#message]: Email não é considerado válido [#status]: 400 [#path]: /user [#method]: POST [#original]: Email não é considerado válido
+[Thu, 27 Jun 2024 19:20:56 GMT] [#ID]: BadRequest [#message]: Senha não é segura o suficiente [#status]: 400 [#path]: /user [#method]: POST [#original]: Senha não é segura o suficiente
+[Thu, 27 Jun 2024 19:21:30 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/session [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:22:25 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: GET [#original]: 
+[Thu, 27 Jun 2024 19:22:54 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:23:00 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:24:04 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:24:13 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:24:20 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:25:31 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:27:40 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:29:52 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:35:15 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:35:24 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:41:40 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:43:13 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:43:36 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:44:20 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:45:19 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:48:19 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 19:51:20 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /stack [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 20:53:21 GMT] [#ID]: BadRequest [#message]: Nome inválido [#status]: 400 [#path]: /stack [#method]: POST [#original]: Nome inválido
+[Thu, 27 Jun 2024 20:53:41 GMT] [#ID]: TypeError [#message]: Cannot read properties of undefined (reading 'length') [#status]: 500 [#path]: /stack [#method]: POST [#original]: Cannot read properties of undefined (reading 'length')
+[Thu, 27 Jun 2024 20:54:14 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /stack [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Thu, 27 Jun 2024 20:57:49 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um editor [#status]: 401 [#path]: /stack [#method]: POST [#original]: O usuário precisa ser um editor
+[Thu, 27 Jun 2024 21:04:28 GMT] [#ID]: Conflict [#message]: Stack com este nome já foi cadastrada [#status]: 409 [#path]: /stack [#method]: POST [#original]: Stack com este nome já foi cadastrada
+[Thu, 27 Jun 2024 22:16:00 GMT] [#ID]: Conflict [#message]: Stack com este nome já foi cadastrada [#status]: 409 [#path]: /stack [#method]: POST [#original]: Stack com este nome já foi cadastrada
+[Thu, 27 Jun 2024 22:16:24 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/Java [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 22:16:57 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/Java [#method]: POST [#original]: 
+[Thu, 27 Jun 2024 22:20:55 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/Java [#method]: GET [#original]: 
+[Thu, 27 Jun 2024 22:21:14 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/Java [#method]: GET [#original]: 
+[Thu, 27 Jun 2024 22:39:16 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /stack/Java [#method]: PATCH [#original]: Recurso não encontrado
+[Thu, 27 Jun 2024 22:40:28 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /stack/Java [#method]: PATCH [#original]: Recurso não encontrado
+[Thu, 27 Jun 2024 22:40:46 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /stack [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Thu, 27 Jun 2024 22:45:40 GMT] [#ID]: PrismaClientValidationError [#message]: 
+Invalid `DBClient.get().stack.create()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\stack\controllers\StackController.ts:59:46
+
+  56 
+  57 if (byName) throw new Conflict(res.locals.i18n?.stackAlreadyExists);
+  58 
+→ 59 const stack = await DBClient.get().stack.create({
+       data: {
+         name: "JavaScript",
+         metaDescription: "JavaScript é uma linguagem versátil usada para o desenvolvimento de aplicações de todos os tipos, principalmente web e mobile, incluindo back-end com Node.js",
+         description: "",
+         updatedBy: undefined,
+     +   createdBy: String
+       }
+     })
+
+Argument `createdBy` is missing. [#status]: 500 [#path]: /stack [#method]: POST [#original]: 
+Invalid `DBClient.get().stack.create()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\stack\controllers\StackController.ts:59:46
+
+  56 
+  57 if (byName) throw new Conflict(res.locals.i18n?.stackAlreadyExists);
+  58 
+→ 59 const stack = await DBClient.get().stack.create({
+       data: {
+         name: "JavaScript",
+         metaDescription: "JavaScript é uma linguagem versátil usada para o desenvolvimento de aplicações de todos os tipos, principalmente web e mobile, incluindo back-end com Node.js",
+         description: "",
+         updatedBy: undefined,
+     +   createdBy: String
+       }
+     })
+
+Argument `createdBy` is missing.
+[Thu, 27 Jun 2024 22:48:49 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /stack/Javab [#method]: PATCH [#original]: Recurso não encontrado
+[Thu, 27 Jun 2024 22:48:52 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /stack/Java [#method]: PATCH [#original]: Recurso não encontrado
+[Thu, 27 Jun 2024 23:07:42 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/Java [#method]: DELETE [#original]: 
+[Thu, 27 Jun 2024 23:08:02 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/JavaScript [#method]: DELETE [#original]: 
+[Thu, 27 Jun 2024 23:20:34 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um moderador [#status]: 401 [#path]: /stack/JavaScript/unlock [#method]: PATCH [#original]: O usuário precisa ser um moderador
+[Thu, 27 Jun 2024 23:21:18 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um moderador [#status]: 401 [#path]: /stack/JavaScript/unlock [#method]: PATCH [#original]: O usuário precisa ser um moderador

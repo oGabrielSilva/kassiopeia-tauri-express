@@ -10,8 +10,8 @@
       data-tauri-drag-region
     >
       <UIBurgerButton
-        :initial-state="!home.isNavbarHidden"
-        @state:changed="(state) => home.updateNavbarState(!state)"
+        :is-active="!home.isNavbarHidden"
+        @state:changed="() => home.updateNavbarState()"
       />
       <h1
         data-tauri-drag-region

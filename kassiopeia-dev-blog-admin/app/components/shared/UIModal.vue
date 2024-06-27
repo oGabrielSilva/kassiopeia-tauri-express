@@ -128,5 +128,6 @@ onUnmounted(() => {
 <style scoped>
 .modal-card {
   max-width: 560px;
+  max-height: 80%;
 }
 </style>

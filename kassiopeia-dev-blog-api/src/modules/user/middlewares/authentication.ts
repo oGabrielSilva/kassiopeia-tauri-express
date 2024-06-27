@@ -13,6 +13,7 @@ export async function authenticationMiddleware(req: IRequest, res: IResponse, ne
   if (payload === null) throw new Forbidden();
 
   res.locals.session = {
+    id: payload.id,
     authorities: payload.authorities,
     subject: payload.sub,
     bearerAuth: {

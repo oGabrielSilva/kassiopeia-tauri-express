@@ -1,64 +1,49 @@
-import { NotFound } from '@/exceptions/class/NotFound';
-import { UserController } from '@/modules/user/controllers/UserController';
 import express from 'express';
-import { adapter } from './utilities/adapter';
+import { adapter } from '@/routes/utilities/adapter';
 import { authenticationMiddleware } from '@/modules/user/middlewares/authentication';
-import multer from 'multer';
+import { StackController } from '@/modules/stack/controllers/StackController';
+import { onlyEditorMiddleware } from '@/modules/user/middlewares/editor';
+import { onlyModMiddleware } from '@/modules/user/middlewares/moderator';
 
-const router = express.Router();
+export function requireGlobalRoutes() {
+  const router = express.Router();
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage, limits: { fileSize: 3145728 } });
+  //ping
+  router.get(
+    '/ping',
+    adapter((_, res) => res.json({ ping: Date.now() }))
+  );
 
-//ping
-router.get(
-  '/ping',
-  adapter((_, res) => res.json({ ping: Date.now() }))
-);
+  //stacks
+  router.get('/stack', adapter(StackController.getAll));
+  router.get('/stack/:name', adapter(StackController.get));
 
-//user
-router.get('/users/avatar/:id', adapter(UserController.getAvatar));
+  router.post(
+    '/stack',
+    adapter(authenticationMiddleware),
+    adapter(onlyEditorMiddleware),
+    adapter(StackController.store)
+  );
 
-router.post('/session', adapter(UserController.session));
+  router.patch(
+    '/stack/:name',
+    adapter(authenticationMiddleware),
+    adapter(onlyEditorMiddleware),
+    adapter(StackController.partialUpdate)
+  );
+  router.patch(
+    '/stack/:name/unlock',
+    adapter(authenticationMiddleware),
+    adapter(onlyModMiddleware),
+    adapter(StackController.unlock)
+  );
 
-router.post('/user', adapter(UserController.store));
+  router.delete(
+    '/stack/:name',
+    adapter(authenticationMiddleware),
+    adapter(onlyEditorMiddleware),
+    adapter(StackController.lock)
+  );
 
-router.post(
-  '/user/check-email',
-  adapter(authenticationMiddleware),
-  adapter(UserController.createEmailCode)
-);
-
-router.patch(
-  '/user/check-email',
-  adapter(authenticationMiddleware),
-  adapter(UserController.verifyEmailCode)
-);
-
-router.put(
-  '/user/avatar',
-  adapter(authenticationMiddleware),
-  upload.single('avatar'),
-  adapter(UserController.putAvatar)
-);
-
-router.patch('/user', adapter(authenticationMiddleware), adapter(UserController.partialUpdate));
-router.patch(
-  '/user/credentials',
-  adapter(authenticationMiddleware),
-  adapter(UserController.patchEmailOrPassword)
-);
-
-router.delete(
-  '/user/social/:id',
-  adapter(authenticationMiddleware),
-  adapter(UserController.deleteSocial)
-);
-
-router.use(
-  adapter(() => {
-    throw new NotFound('');
-  })
-);
-
-export default router;
+  return router;
+}

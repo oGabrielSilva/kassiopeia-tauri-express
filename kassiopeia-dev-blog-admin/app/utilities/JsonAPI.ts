@@ -9,7 +9,7 @@ interface IJsonAPIOptions {
   credentials?: RequestCredentials
 }
 
-interface IJsonAPIResult<T = null> {
+export interface IJsonAPIResult<T = null> {
   body: T | null
   response: Response
   error: Exception | null

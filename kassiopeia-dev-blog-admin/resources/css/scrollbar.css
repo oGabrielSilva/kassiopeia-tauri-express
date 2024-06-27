@@ -17,3 +17,7 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--bulma-grey-darker);
 }
+
+.modal-card-body::-webkit-scrollbar {
+  display: unset;
+}

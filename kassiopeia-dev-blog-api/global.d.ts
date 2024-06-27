@@ -17,6 +17,7 @@ export declare global {
     };
     subject: string;
     authorities: $Enums.Role[];
+    id: string;
   }
 
   interface IResponse extends Response {

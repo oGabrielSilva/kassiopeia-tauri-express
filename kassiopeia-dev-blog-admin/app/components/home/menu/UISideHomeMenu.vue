@@ -10,7 +10,11 @@
     <p class="menu-label">{{ strings.geral }}</p>
     <ul class="menu-list">
       <li v-if="auth.user?.isEditor()">
-        <a>
+        <a
+          class="my-1"
+          :class="{ 'is-active': home.sideMenuOptionSelected === 'DASHBOARD' }"
+          @click="updateMenuOptionSelectedTo('DASHBOARD')"
+        >
           <span class="icon is-small">
             <font-awesome-icon icon="chart-pie" />
           </span>
@@ -18,7 +22,11 @@
         </a>
       </li>
       <li>
-        <a>
+        <a
+          class="my-1"
+          :class="{ 'is-active': home.sideMenuOptionSelected === 'ALL_POSTS' }"
+          @click="updateMenuOptionSelectedTo('ALL_POSTS')"
+        >
           <span class="icon is-small">
             <font-awesome-icon icon="border-all" />
           </span>
@@ -31,7 +39,11 @@
     <p class="menu-label">{{ strings.edition }}</p>
     <ul class="menu-list">
       <li v-if="auth.user?.isEditor()">
-        <a>
+        <a
+          class="my-1"
+          :class="{ 'is-active': home.sideMenuOptionSelected === 'WRITE' }"
+          @click="updateMenuOptionSelectedTo('WRITE')"
+        >
           <span class="icon is-small">
             <font-awesome-icon icon="feather-pointed" />
           </span>
@@ -39,7 +51,11 @@
         </a>
       </li>
       <li v-if="auth.user?.isEditor()">
-        <a>
+        <a
+          class="my-1"
+          :class="{ 'is-active': home.sideMenuOptionSelected === 'MY_POSTS' }"
+          @click="updateMenuOptionSelectedTo('MY_POSTS')"
+        >
           <span class="icon is-small">
             <font-awesome-icon icon="newspaper" />
           </span>
@@ -47,7 +63,11 @@
         </a>
       </li>
       <li v-if="auth.user?.isEditor()">
-        <a>
+        <a
+          class="my-1"
+          :class="{ 'is-active': home.sideMenuOptionSelected === 'STACKS' }"
+          @click="updateMenuOptionSelectedTo('STACKS')"
+        >
           <span class="icon is-small">
             <font-awesome-icon icon="cubes" />
           </span>
@@ -98,6 +118,13 @@ const router = useRouter()
 
 const menu = ref<HTMLElement>()
 
+function updateMenuOptionSelectedTo(
+  option: typeof home.sideMenuOptionSelected,
+) {
+  home.updateSideMenuOptionSelected(option)
+  home.updateNavbarState()
+}
+
 function signOut() {
   auth.signOut()
   router.push('/session')
@@ -126,5 +153,7 @@ a {
   left: 0;
   border-right: 2px solid var(--bulma-background);
   transition: all 400ms ease-in-out;
+  z-index: 2;
+  background: var(--bulma-body-background-color);
 }
 </style>

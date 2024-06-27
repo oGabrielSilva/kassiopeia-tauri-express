@@ -1,7 +1,7 @@
 <template>
   <button
     class="navbar-burger"
-    :class="{ 'is-active': isActive }"
+    :class="{ 'is-active': props.isActive }"
     role="button"
     aria-label="menu"
     aria-expanded="false"
@@ -16,21 +16,16 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
 interface IUIBurgerProps {
-  initialState?: boolean
+  isActive: boolean
 }
 
 const props = defineProps<IUIBurgerProps>()
 
-const isActive = ref(props.initialState ?? false)
-
-const emit = defineEmits<{ 'state:changed': [state: boolean] }>()
+const emit = defineEmits<{ 'state:changed': [] }>()
 
 function onClick() {
-  isActive.value = !isActive.value
-  emit('state:changed', isActive.value)
+  emit('state:changed')
 }
 </script>
 

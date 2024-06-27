@@ -26,4 +26,10 @@ export default {
   socialIdIsNumber: 'O id da URL social não é um número ou não foi informado',
   emailVerificationSubject: 'Verificação de email. Código #',
   tokenInvalid: 'Token inválido',
+  nameInvalid: 'Nome inválido',
+  metaDescriptionInvalid: 'A meta descrição precisa ter entre 50 e 160 caracteres',
+  stackAlreadyExists: 'Stack com este nome já foi cadastrada',
+  userMustBeEditor: 'O usuário precisa ser um editor',
+  userMustBeMod: 'O usuário precisa ser um moderador',
+  nameIsParamRequired: 'O parâmetro nome é requerido',
 };
