@@ -25,7 +25,6 @@ export async function requireKassiopeiaToaster() {
 
   return ToasterKassiopeiaTool.getConfigured({
     ...ToasterKassiopeiaTool.defaultConfiguration(),
-
     background: {
       danger: {
         color: 'hsl(348, 100%, 61%)',

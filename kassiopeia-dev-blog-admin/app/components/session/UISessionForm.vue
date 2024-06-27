@@ -4,12 +4,12 @@
       <UIFieldInput
         :has-icon-left="true"
         :helper="{
-          text: strings.session.emailHelper,
+          text: strings.emailHelper,
           isVisible: Boolean(email.value && !email.isValid),
         }"
         input-id="email"
         :label="strings.email"
-        :placeholder="strings.session.emailPlaceholder"
+        :placeholder="strings.emailPlaceholder"
         type="email"
         @on:input="methods.onEmailImputed"
       >
@@ -25,7 +25,7 @@
       <UIFieldInput
         :has-icon-left="true"
         :helper="{
-          text: strings.session.passwordHelper,
+          text: strings.passwordHelper,
           isVisible: Boolean(password.value && !password.isValid),
         }"
         input-id="password"
@@ -105,7 +105,7 @@ onMounted(async () => {
   const animation = await kassiopeia.requireKassiopeiaAnimation()
   const locker = await kassiopeia.requireKassiopeiaScreenLocker()
 
-  if (isForbidden) toaster.danger(strings.session.expired, 3000)
+  if (isForbidden) toaster.danger(strings.expired, 3000)
 
   methods.onEmailImputed = (newEmail: string) => {
     email.value = newEmail
@@ -136,14 +136,14 @@ onMounted(async () => {
     }
 
     if (!email.isValid) {
-      toaster.warn(strings.session.emailWarn)
+      toaster.warn(strings.emailWarn)
       animation.shakeX(emailContainer, false, 700)
       emailContainer.querySelector('input')?.focus()
       return false
     }
 
     if (!password.isValid) {
-      toaster.warn(strings.session.passwordWarn)
+      toaster.warn(strings.passwordWarn)
       animation.shakeX(passwordContainer, false, 700)
       passwordContainer.querySelector('input')?.focus()
       return false

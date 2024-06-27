@@ -18,7 +18,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-const isActive = ref(false)
+interface IUIBurgerProps {
+  initialState?: boolean
+}
+
+const props = defineProps<IUIBurgerProps>()
+
+const isActive = ref(props.initialState ?? false)
 
 const emit = defineEmits<{ 'state:changed': [state: boolean] }>()
 

@@ -10,6 +10,11 @@ export declare global {
   }
 
   interface ILocalSession {
+    bearerAuth: {
+      token: string;
+      createdAt: Date;
+      expiresAt: Date;
+    };
     subject: string;
     authorities: $Enums.Role[];
   }

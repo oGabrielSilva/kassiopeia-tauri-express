@@ -4,8 +4,8 @@ import router from '@/routes/global';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { exceptionMiddleware } from './middlewares/exception';
-import { propagateI18n } from './middlewares/i18n';
+import { exceptionMiddleware } from '@/middlewares/exception';
+import { propagateI18n } from '@/middlewares/i18n';
 
 export class Startup {
   private port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;

@@ -6,6 +6,10 @@
       height="32px"
       data-avatar
       :src="auth.avatarURL"
+      class="is-skeleton"
+      @load="
+        (e) => (e.currentTarget as HTMLElement).classList.remove('is-skeleton')
+      "
     />
   </div>
 </template>

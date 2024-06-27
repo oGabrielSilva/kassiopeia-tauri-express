@@ -13,6 +13,10 @@ import { ImageUploadService } from '@/services/ImageUploadService';
 import { InternalServerError } from '@/exceptions/class/InternalServerError';
 import stream from 'stream';
 import { Protocol } from '@/utilities/Protocol';
+import { Forbidden } from '@/exceptions/class/Forbidden';
+import { IdGen } from '@/utilities/IdGen';
+import { EmailService } from '@/modules/email/services/EmailService';
+import { EmailTemplate } from '@/modules/email/EmailTemplate';
 
 export class UserController {
   public static get AVATAR_PATH() {
@@ -169,5 +173,106 @@ export class UserController {
     res.set('Content-Type', body.result.ContentType);
 
     stream.Readable.from([await body.object!.transformToByteArray()]).pipe(res);
+  }
+
+  public static async deleteSocial(req: IRequest, res: IResponse) {
+    const id = Number(req.params.id);
+
+    if (!id || Number.isNaN(id)) throw new BadRequest(res.locals.i18n?.socialIdIsNumber);
+
+    const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
+
+    const byId = user.social.find((socialLink) => socialLink.id === id);
+    if (!byId) throw new NotFound(res.locals.i18n?.exceptions[404]);
+
+    user.social = user.social.filter((socialLink) => socialLink.id !== id);
+
+    await DBClient.get().user.update({
+      where: {
+        id: user.id,
+      },
+      data: {
+        social: user.social,
+      },
+    });
+
+    res.status(204).end();
+  }
+
+  public static async patchEmailOrPassword(req: IRequest<User>, res: IResponse) {
+    if (!req.body) throw new BadRequest(res.locals.i18n?.bodyInvalid);
+    const { email, password } = req.body;
+
+    const { createdAt } = res.locals.session?.bearerAuth ?? {};
+
+    if (!createdAt) throw new Forbidden();
+
+    const expirationTime = new Date(createdAt.getTime());
+    expirationTime.setMinutes(createdAt.getMinutes() + 30);
+
+    if (expirationTime.getTime() < Date.now()) throw new Forbidden();
+
+    const payload = {} as User;
+    const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
+
+    if (Kassiopeia.isEmailValid(email) && email !== user.email) {
+      payload.email = email;
+    }
+
+    if (Kassiopeia.isPasswordValid(password)) {
+      const isPasswordEquals = await PasswordEncryptor.compare(password, user.password);
+
+      if (!isPasswordEquals) payload.password = await PasswordEncryptor.hash(password);
+    }
+
+    if (payload.email || payload.password) {
+      await DBClient.get().user.update({
+        where: { email: res.locals.session?.subject ?? '' },
+        data: payload,
+      });
+    }
+
+    res.status(204).end();
+  }
+
+  public static async verifyEmailCode(req: IRequest, res: IResponse) {
+    if (!req.body) throw new BadRequest(res.locals.i18n?.bodyInvalid);
+
+    const { token } = req.body as { token: string };
+    if (typeof token !== 'string') throw new BadRequest(res.locals.i18n?.tokenInvalid);
+
+    const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
+    if (user.emailVerificationToken !== token)
+      throw new Unauthorized(res.locals.i18n?.credentialsError);
+
+    await UserService.service.db.user.update({
+      where: { id: user.id },
+      data: {
+        isEmailChecked: true,
+      },
+    });
+
+    res.status(201).end();
+  }
+
+  public static async createEmailCode(_: IRequest, res: IResponse) {
+    const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
+
+    const code = await IdGen.nextId5();
+
+    await UserService.service.db.user.update({
+      where: { id: user.id },
+      data: {
+        emailVerificationToken: code,
+      },
+    });
+
+    await EmailService.service.send(
+      user.email,
+      res.locals.i18n?.emailVerificationSubject.replace('#', code) ?? '',
+      EmailTemplate.generateVerificationEmailToken(user, code)
+    );
+
+    res.status(201).end();
   }
 }

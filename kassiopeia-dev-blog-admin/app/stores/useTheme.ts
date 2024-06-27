@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 type TTheme = 'light' | 'dark'
 
@@ -25,24 +25,26 @@ const recoveryTheme = (): TTheme => {
 }
 
 export const useTheme = defineStore('Theme', () => {
-  const current = ref(recoveryTheme())
+  const currentRef = ref(recoveryTheme())
+
+  const current = computed(() => currentRef.value)
 
   function whatNext(): TTheme {
-    return current.value === 'dark' ? 'light' : 'dark'
+    return currentRef.value === 'dark' ? 'light' : 'dark'
   }
 
   function toNext() {
     const next = whatNext()
     update(next)
-    current.value = next
+    currentRef.value = next
   }
 
   function getCurrent() {
-    return current.value
+    return currentRef.value
   }
 
   function isDark() {
-    return current.value === 'dark'
+    return currentRef.value === 'dark'
   }
 
   return { current, toNext, whatNext, getCurrent, isDark }

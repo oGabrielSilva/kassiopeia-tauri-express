@@ -1,4 +1,5 @@
 {
   "api": "http://127.0.0.1:3001",
-  "sessionEventAnotherWindowKey": "auth__evn"
+  "sessionEventAnotherWindowKey": "auth__evn",
+  "AVATAR_MAX_WIDTH": 3145728
 }

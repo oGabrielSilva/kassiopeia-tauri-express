@@ -49,7 +49,7 @@ listen(app.sessionEventAnotherWindowKey, async (e) => {
     const toaster = await requireKassiopeiaToaster()
     auth.update(user, token)
 
-    toaster.success(strings.session.sessionInSuccessfully)
+    toaster.success(strings.sessionInSuccessfully)
   }
 })
 </script>

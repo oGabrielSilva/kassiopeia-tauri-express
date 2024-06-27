@@ -4,9 +4,9 @@
   >
     <div class="has-text-centered">
       <h1 class="title mb-0">
-        {{ strings.session.title }}
+        {{ strings.title }}
       </h1>
-      <p>{{ strings.session.titleHelper }}</p>
+      <p>{{ strings.titleHelper }}</p>
     </div>
     <div style="width: 50%" class="pt-5 pb-3">
       <UISessionForm />

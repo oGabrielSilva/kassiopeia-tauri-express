@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1 class="pt-3 pb-5 title is-5">
-      {{ strings.profilePage.userInfoTabTitle }}
+      {{ strings.userInfoTabTitle }}
     </h1>
     <form @submit="onSubmit">
       <div class="is-flex g-1">
@@ -10,7 +10,10 @@
             class="avatar"
             :src="auth.avatarURL"
             :style="{
-              border: !user.avatarURL ? '2px solid var(--bulma-primary)' : '',
+              border:
+                auth.user && auth.user.avatarURL
+                  ? ''
+                  : '2px solid var(--bulma-primary)',
             }"
             width="82px"
             height="82px"
@@ -30,13 +33,13 @@
             :has-icon-left="true"
             :helper="{
               isVisible: !isNameValid,
-              text: strings.profilePage.nameHelper,
+              text: strings.nameHelper,
             }"
             input-id="name-input"
             :label="strings.name"
-            :placeholder="strings.profilePage.namePlaceholder"
+            :placeholder="strings.namePlaceholder"
             type="text"
-            :initial-value="user.name"
+            :initial-value="auth.user?.name ?? ''"
             @on:input="onNameImputed"
           >
             <template #icon>
@@ -52,9 +55,9 @@
         <UIFieldTextArea
           :rows="8"
           :has-icon-left="true"
-          :initial-value="user.bio"
+          :initial-value="auth.user?.bio ?? ''"
           input-id="bio"
-          :placeholder="strings.profilePage.bioPlaceholder"
+          :placeholder="strings.bioPlaceholder"
           :label="strings.bio"
           @on:input="(newValue) => (bioImputed = newValue)"
         >
@@ -64,7 +67,7 @@
             </span>
           </template>
         </UIFieldTextArea>
-        <p class="help">{{ strings.profilePage.bioHelper }}</p>
+        <p class="help">{{ strings.bioHelper }}</p>
       </div>
 
       <div class="py-3 is-flex is-align-items-end is-flex-direction-column">
@@ -77,13 +80,15 @@
 </template>
 
 <script setup lang="ts">
+import app from '@resources/config/app.json'
 import { useAuth } from '@app/stores/useAuth'
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
 import { useI18n } from '@app/stores/useI18n'
 import {
   AnimationKassiopeiaTool,
+  ImageKassiopeiaProcessingTool,
   ScreenLockerKassiopeiaTool,
   ToasterKassiopeiaTool,
   ValidationKassiopeiaTool,
@@ -92,21 +97,14 @@ import UIFieldTextArea from '@app/components/shared/UIFieldTextArea.vue'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import type { ISessionResponse } from '@app/auth/types'
-import { useNextAvatar } from '@app/composables/useNextAvatar'
 import { isForbidden } from '@app/utilities/isForbidden'
 import { forbidden } from '@app/utilities/forbidden'
 
 const strings = useI18n()
-
+const router = useRouter()
 const auth = useAuth()
-const user = computed(() => auth.user!)
 
 const isNameValid = ref(false)
-
-if (user === null) {
-  const router = useRouter()
-  router.push('/session')
-}
 
 const avatarInputRef = ref<HTMLInputElement>()
 const nameInputContainer = ref<HTMLInputElement>()
@@ -114,8 +112,9 @@ const bioInputContainer = ref<HTMLInputElement>()
 
 const validation = ValidationKassiopeiaTool.get()
 const anim = AnimationKassiopeiaTool.get()
-let toaster: ToasterKassiopeiaTool
 const screenLocker = ScreenLockerKassiopeiaTool.get()
+const imageTool = ImageKassiopeiaProcessingTool.get()
+let toaster: ToasterKassiopeiaTool
 
 const nameImputed = ref('')
 const bioImputed = ref('')
@@ -134,15 +133,15 @@ async function onSubmit(e: Event) {
       .addEventOnCompletion(() =>
         nameInputContainer.value?.querySelector('input')?.focus(),
       )
-    toaster.warn(strings.profilePage.nameHelper)
+    toaster.warn(strings.nameHelper)
     return
   }
 
   const name = nameImputed.value
   const bio = bioImputed.value
   const payload = {
-    name: name !== user.value.name ? name : void 0,
-    bio: bio !== user.value.bio ? bio : void 0,
+    name: name !== auth.user?.name ? name : void 0,
+    bio: bio !== auth.user?.bio ? bio : void 0,
   }
 
   if (!payload.name && !payload.bio) return
@@ -164,7 +163,7 @@ async function onSubmit(e: Event) {
       return toaster.danger(response.error.message)
     }
 
-    toaster.success(strings.profilePage.profileUpdatedSuccessfully)
+    toaster.success(strings.profileUpdatedSuccessfully)
     auth.update(response.body?.user, response.body?.token)
   } catch (error) {
     console.log(error)
@@ -177,9 +176,52 @@ async function onSubmit(e: Event) {
 async function onAvatarChanged() {
   screenLocker.lock()
   try {
-    if (avatarInputRef.value && avatarInputRef.value.files) {
-      await useNextAvatar(avatarInputRef.value.files[0], toaster)
+    if (!avatarInputRef.value || !avatarInputRef.value.files) return
+    const file = avatarInputRef.value.files[0]
+
+    if (!file.type.startsWith('image/')) {
+      toaster.info(strings.avatarNeedsToBeImage)
+      return null
     }
+
+    const blob = await imageTool.convertFileToWebpBlobWithoutClipping(
+      file,
+      0.75,
+    )
+
+    if (!blob) {
+      toaster.warn(strings.errorProcessingSelectedImage)
+      return null
+    }
+
+    if (blob.size > app.AVATAR_MAX_WIDTH) {
+      toaster.warn(strings.avatarTooLarge)
+      return null
+    }
+
+    if (!auth.token) return null
+
+    const data = new FormData()
+
+    data.set('avatar', blob)
+
+    const response = await fetch(JsonAPI.resolvePath('/user/avatar'), {
+      body: data,
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${auth.token}`,
+      },
+    })
+
+    if (response.ok) {
+      const data = await response.json()
+      const url = data.url as string
+      auth.updateAvatarURL(url)
+      return
+    }
+
+    const { message } = await response.json()
+    toaster.danger(message)
   } catch (error) {
     console.log(error)
     toaster.danger()
@@ -190,6 +232,10 @@ async function onAvatarChanged() {
 
 onMounted(async () => {
   if (!toaster) toaster = await requireKassiopeiaToaster()
+
+  if (!auth.user) {
+    router.push('/session')
+  }
 })
 </script>
 

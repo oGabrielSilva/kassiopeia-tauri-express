@@ -64,6 +64,7 @@
 <script setup lang="ts">
 import { type ISocial } from '@app/auth/types'
 import UIModal from '@app/components/shared/UIModal.vue'
+import { useAuth } from '@app/stores/useAuth'
 import { useI18n } from '@app/stores/useI18n'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import { forbidden } from '@app/utilities/forbidden'
@@ -79,14 +80,15 @@ interface IUITableSocialLinkItemProps {
   link: ISocial
 }
 
+const props = defineProps<IUITableSocialLinkItemProps>()
+
 const locker = ScreenLockerKassiopeiaTool.get()
 let toaster: ToasterKassiopeiaTool
 
 const strings = useI18n()
+const auth = useAuth()
 
 const isModalDeleteVisible = ref(false)
-
-const props = defineProps<IUITableSocialLinkItemProps>()
 
 function hideDeleteModal() {
   isModalDeleteVisible.value = false
@@ -105,7 +107,9 @@ async function onDeleteSocialLink() {
       return
     }
 
+    if (result.response.ok) auth.deleteSocialLink(props.link.id)
     toaster.info(strings.actionSuccess)
+    hideDeleteModal()
   } catch (error) {
     console.log(error)
     toaster.danger()

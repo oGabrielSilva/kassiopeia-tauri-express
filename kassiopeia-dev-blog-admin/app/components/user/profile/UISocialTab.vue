@@ -2,7 +2,7 @@
   <div>
     <div class="is-flex is-align-items-start is-justify-content-space-between">
       <h1 class="pt-3 pb-5 title is-5">
-        {{ strings.profilePage.socialTabTitle }}
+        {{ strings.socialTabTitle }}
       </h1>
       <button
         @click="() => (isModalLinkVisible = true)"
@@ -14,13 +14,18 @@
     </div>
 
     <div v-if="links.length < 1">
-      <h2>{{ strings.profilePage.linksEmpty }}</h2>
+      <h2>{{ strings.linksEmpty }}</h2>
     </div>
 
     <div v-else class="table-container">
       <table class="table is-hoverable is-fullwidth">
         <thead>
           <tr>
+            <th>
+              <abbr :title="strings.icon">
+                <font-awesome-icon icon="font-awesome" />
+              </abbr>
+            </th>
             <th>{{ strings.name }}</th>
             <th>{{ strings.url }}</th>
             <th data-action>{{ strings.actions }}</th>

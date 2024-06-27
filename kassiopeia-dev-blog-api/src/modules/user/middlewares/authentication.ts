@@ -12,6 +12,15 @@ export async function authenticationMiddleware(req: IRequest, res: IResponse, ne
 
   if (payload === null) throw new Forbidden();
 
-  res.locals.session = { authorities: payload.authorities, subject: payload.sub };
+  res.locals.session = {
+    authorities: payload.authorities,
+    subject: payload.sub,
+    bearerAuth: {
+      token: token,
+      createdAt: new Date(payload.iat * 1000),
+      expiresAt: new Date(payload.exp * 1000),
+    },
+  };
+
   next();
 }

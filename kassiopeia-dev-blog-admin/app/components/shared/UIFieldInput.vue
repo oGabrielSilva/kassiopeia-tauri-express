@@ -6,12 +6,18 @@
     >
       <input
         ref="input"
-        :class="{ input: true, 'is-danger': props.helper?.isVisible }"
+        :class="{
+          input: true,
+          'is-danger': props.helper?.isVisible,
+          'is-clickable': props.readonly,
+        }"
         :name="props.name"
         :type="props.type"
         :id="props.inputId"
         :placeholder="props.placeholder"
         @input="() => emits('on:input', input?.value ?? '')"
+        :readonly="props.readonly"
+        :disabled="props.disabled"
       />
       <slot name="icon" />
     </div>
@@ -37,6 +43,8 @@ interface IFieldInputProps {
   type: InputTypeHTMLAttribute
   placeholder?: string
   helper?: { isVisible: boolean; text?: string }
+  readonly?: boolean
+  disabled?: boolean
 }
 
 const input = ref<HTMLInputElement>()

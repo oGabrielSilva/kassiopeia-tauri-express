@@ -9,7 +9,10 @@
       class="is-flex is-justify-content-center g-1 is-align-items-center"
       data-tauri-drag-region
     >
-      <UIBurgerButton />
+      <UIBurgerButton
+        :initial-state="!home.isNavbarHidden"
+        @state:changed="(state) => home.updateNavbarState(!state)"
+      />
       <h1
         data-tauri-drag-region
         class="title-user-select title is-7 is-family-monospace mb-0"
@@ -28,7 +31,7 @@
         <div data-ui-theme><UIThemeButton /></div>
       </div>
       <button class="hide" type="button" @click="onClickHide" />
-      <button class="close" type="button" @click="onClickClose" />
+      <button class="close-app" type="button" @click="onClickCloseApp" />
     </div>
   </div>
 </template>
@@ -39,11 +42,13 @@ import UIBurgerButton from '@app/components/shared/UIBurgerButton.vue'
 import { useI18n } from '@app/stores/useI18n'
 import { appWindow } from '@tauri-apps/api/window'
 import UIThemeButton from '@app/components/shared/UIThemeButton.vue'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, onUpdated } from 'vue'
 import { useSafeArea } from '@app/stores/useSafeArea'
+import { useHome } from '@app/stores/useHome'
 
 const strings = useI18n()
 const safeArea = useSafeArea()
+const home = useHome()
 
 const container = ref<HTMLElement>()
 
@@ -51,7 +56,7 @@ function onClickHide() {
   appWindow.minimize()
 }
 
-function onClickClose() {
+function onClickCloseApp() {
   appWindow.close()
 }
 
@@ -69,6 +74,8 @@ function updateSafeArea() {
 onMounted(() => {
   updateSafeArea()
 })
+
+onUpdated(() => updateSafeArea())
 </script>
 
 <style scoped>
@@ -87,14 +94,14 @@ onMounted(() => {
 }
 
 .hide,
-.close {
+.close-app {
   background: var(--bulma-danger-55);
   height: 14px;
   width: 14px;
   border-radius: 100%;
 }
 
-.close:hover {
+.close-app:hover {
   background: var(--bulma-danger-70);
 }
 

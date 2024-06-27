@@ -42,7 +42,7 @@
         "minHeight": 420,
         "hiddenTitle": true,
         "decorations": false,
-        "transparent": true
+        "transparent": false
       }
     ],
     "security": {

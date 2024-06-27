@@ -29,16 +29,36 @@ export const useAuth = defineStore('Auth', () => {
   })
 
   function update(user?: User | IUser, token?: string) {
-    if (user) {
-      userRef.value = User.from(user)
+    if (!user || !token) {
+      userRef.value = null
+      tokenRef.value = null
+      return
     }
-    if (token) tokenRef.value = token
+
+    userRef.value = User.from(user)
+    tokenRef.value = token
   }
 
   function updateAvatarURL(url?: string | null) {
     if (url && url !== avatarURL.value) {
-      update(User.from({ ...userRef.value, avatarURL: url }))
+      update(
+        User.from({ ...userRef.value, avatarURL: url }),
+        tokenRef.value ?? '',
+      )
     }
+  }
+
+  function deleteSocialLink(id: number) {
+    if (userRef.value && userRef.value.social) {
+      userRef.value = User.from({
+        ...userRef.value,
+        social: userRef.value.social.filter((item) => item.id !== id),
+      })
+    }
+  }
+
+  function signOut() {
+    update(void 0, void 0)
   }
 
   return {
@@ -50,5 +70,7 @@ export const useAuth = defineStore('Auth', () => {
     update,
     avatarURL,
     updateAvatarURL,
+    deleteSocialLink,
+    signOut,
   }
 })

@@ -2526,3 +2526,16 @@ Raw query failed. Code: `unknown`. Message: `Kind: Command failed: Error code 80
 [Mon, 24 Jun 2024 02:19:58 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Mon, 24 Jun 2024 21:36:21 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Mon, 24 Jun 2024 21:59:12 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/social/1719259586067 [#method]: DELETE [#original]: 
+[Mon, 24 Jun 2024 22:15:04 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/social/1719259586067 [#method]: DELETE [#original]: 
+[Tue, 25 Jun 2024 23:55:39 GMT] [#ID]: NotFound [#message]: Usuário não está registrado [#status]: 404 [#path]: /session [#method]: POST [#original]: Usuário não está registrado
+[Tue, 25 Jun 2024 23:56:02 GMT] [#ID]: Error [#message]: data and hash arguments required [#status]: 500 [#path]: /user/credentials [#method]: PATCH [#original]: data and hash arguments required
+[Wed, 26 Jun 2024 00:36:22 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Wed, 26 Jun 2024 16:12:42 GMT] [#ID]: Error [#message]: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-70675684c35sm6946164b3a.130 - gsmtp [#status]: 500 [#path]: /user/check-email [#method]: POST [#original]: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-70675684c35sm6946164b3a.130 - gsmtp
+[Wed, 26 Jun 2024 18:32:03 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Wed, 26 Jun 2024 19:25:57 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Wed, 26 Jun 2024 19:32:27 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /favicon.ico [#method]: GET [#original]: 
+[Wed, 26 Jun 2024 21:13:38 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Wed, 26 Jun 2024 23:37:50 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Thu, 27 Jun 2024 00:39:01 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
