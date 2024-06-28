@@ -111,4 +111,5 @@ export default {
   position: 'Posição',
   disableStackModalTitle: 'Desabilitar #',
   emptyStacks: 'Nenhuma stack cadastrada',
+  viewWriteTitle: 'Escreva uma nova publicação',
 }

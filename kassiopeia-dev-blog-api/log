@@ -2631,3 +2631,4 @@ Argument `createdBy` is missing.
 [Fri, 28 Jun 2024 16:47:41 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Fri, 28 Jun 2024 16:48:52 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Fri, 28 Jun 2024 17:51:20 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 22:40:05 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas

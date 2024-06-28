@@ -20,11 +20,11 @@ const recoveryI18n = () => {
 
 export const useI18n = defineStore('I18N', {
   state: () => ({
-    ...recoveryI18n()
+    ...recoveryI18n(),
   }),
   actions: {
     changeTo() {
       console.log(this)
-    }
-  }
+    },
+  },
 })
