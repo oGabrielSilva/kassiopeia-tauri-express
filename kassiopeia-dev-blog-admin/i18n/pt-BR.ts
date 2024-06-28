@@ -6,6 +6,7 @@ export default {
   appDescription:
     'É uma plataforma dedicada a ensinar sobre desenvolvimento de software em todas as áreas',
   findAProblem: 'Encontrei um problema',
+  ok: 'OK',
   terms: 'Termos',
   email: 'Email',
   confirmPassword: 'Confirme sua senha',
@@ -72,6 +73,7 @@ export default {
   confirm: 'Confirmar',
   yes: 'Sim',
   'yes-remove': 'Sim, remover',
+  'yes-disable': 'Sim, desabilitar',
   no: 'Não',
   'no-cancel': 'Não, cancelar',
   removeSocialURLModalBody: 'Esta ação removerá a URL social intitulada',
@@ -97,11 +99,16 @@ export default {
   stacksTitle: 'Stacks do projeto',
   add: 'Adicionar',
   addStack: 'Adicionar Stack',
+  editStack: 'Editar Stack',
   description: 'Descrição',
-  metaDescriptionLabel: 'Meta Descrição',
+  metaDescriptionLabel: 'Meta descrição',
   metaDescriptionHelper:
     'O tamanho ideal para a meta descrição é entre 150 e 160 caracteres. Essa faixa garante que a descrição seja exibida de forma completa nos resultados',
   metaDescriptionInfo:
     'A meta descrição será injetada em um atributo HTML que fornece um resumo breve e conciso do conteúdo de uma página. Descrições envolventes e relevantes podem aumentar a taxa de cliques, sinalizando aos motores de busca que a página é valiosa para os usuários',
   metaDescriptionIsRequired: 'A meta descrição é requerida',
+  metaAbbr: 'Meta',
+  position: 'Posição',
+  disableStackModalTitle: 'Desabilitar #',
+  emptyStacks: 'Nenhuma stack cadastrada',
 }

@@ -1,5 +1,8 @@
 <template>
   <tr>
+    <td>
+      <font-awesome-icon :icon="faIconByLink(props.link.uri)" />
+    </td>
     <td>{{ props.link.name }}</td>
     <td>
       <a
@@ -68,6 +71,7 @@ import { useAuth } from '@app/stores/useAuth'
 import { useI18n } from '@app/stores/useI18n'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import { forbidden } from '@app/utilities/forbidden'
+import { faIconByLink } from '@app/utilities/iconByLink'
 import { isForbidden } from '@app/utilities/isForbidden'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import {

@@ -2624,3 +2624,10 @@ Argument `createdBy` is missing.
 [Thu, 27 Jun 2024 23:08:02 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /stack/JavaScript [#method]: DELETE [#original]: 
 [Thu, 27 Jun 2024 23:20:34 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um moderador [#status]: 401 [#path]: /stack/JavaScript/unlock [#method]: PATCH [#original]: O usuário precisa ser um moderador
 [Thu, 27 Jun 2024 23:21:18 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um moderador [#status]: 401 [#path]: /stack/JavaScript/unlock [#method]: PATCH [#original]: O usuário precisa ser um moderador
+[Fri, 28 Jun 2024 00:19:13 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 02:30:21 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 03:01:11 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 15:07:13 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 16:47:41 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 16:48:52 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 28 Jun 2024 17:51:20 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas

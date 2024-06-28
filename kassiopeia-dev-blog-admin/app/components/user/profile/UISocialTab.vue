@@ -32,6 +32,23 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td>
+              <font-awesome-icon icon="envelope" />
+            </td>
+            <td>{{ strings.email }}</td>
+            <td>
+              <a
+                :href="'mailto:' + auth.user?.email ?? ''"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button is-ghost p-0 m-0"
+                >{{ auth.user?.email }}</a
+              >
+            </td>
+            <td></td>
+          </tr>
+
           <UITableSocialLinkItem
             v-for="(link, index) in auth.user?.social ?? []"
             :link="link"
