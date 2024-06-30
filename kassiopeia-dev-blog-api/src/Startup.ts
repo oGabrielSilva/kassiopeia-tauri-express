@@ -5,8 +5,12 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { exceptionMiddleware } from '@/middlewares/exception';
 import { propagateI18n } from '@/middlewares/i18n';
-import { requireGlobalRoutes } from './routes/global';
-import { requireUserRoutes } from './routes/user/user';
+import globalRouter from '@/routes/global';
+import userRouter from '@/modules/user/router/userRouter';
+import stackRouter from '@/modules/stack/router/stackRouter';
+import postRouter from '@/modules/post/router/postRouter';
+import { adapter } from '@/routes/utilities/adapter';
+import { NotFound } from '@/exceptions/class/NotFound';
 
 export class Startup {
   private port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
@@ -26,8 +30,16 @@ export class Startup {
   }
 
   private defineRoutes() {
-    this.app.use(requireGlobalRoutes());
-    this.app.use(requireUserRoutes());
+    this.app.use(globalRouter);
+    this.app.use(userRouter);
+    this.app.use(stackRouter);
+    this.app.use(postRouter);
+
+    this.app.use(
+      adapter(() => {
+        throw new NotFound('');
+      })
+    );
   }
 
   private configure() {

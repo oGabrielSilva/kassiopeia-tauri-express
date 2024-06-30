@@ -2632,3 +2632,122 @@ Argument `createdBy` is missing.
 [Fri, 28 Jun 2024 16:48:52 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Fri, 28 Jun 2024 17:51:20 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
 [Fri, 28 Jun 2024 22:40:05 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Sat, 29 Jun 2024 17:01:09 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:03:30 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:04:28 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:26:48 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:27:22 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:30:44 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:34:55 GMT] [#ID]: Unauthorized [#message]: O usuário precisa ser um editor [#status]: 401 [#path]: /post [#method]: POST [#original]: O usuário precisa ser um editor
+[Sat, 29 Jun 2024 17:35:32 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:35:36 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:35:42 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:36:18 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:36:41 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:38:56 GMT] [#ID]: BadRequest [#message]: Não foi fornecido um título válido [#status]: 400 [#path]: /post [#method]: POST [#original]: Não foi fornecido um título válido
+[Sat, 29 Jun 2024 17:39:37 GMT] [#ID]: BadRequest [#message]: Não foi fornecida uma descrição válida [#status]: 400 [#path]: /post [#method]: POST [#original]: Não foi fornecida uma descrição válida
+[Sat, 29 Jun 2024 17:42:09 GMT] [#ID]: BadRequest [#message]: Não foi fornecida uma descrição válida [#status]: 400 [#path]: /post [#method]: POST [#original]: Não foi fornecida uma descrição válida
+[Sat, 29 Jun 2024 17:42:22 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Sat, 29 Jun 2024 17:45:32 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Sat, 29 Jun 2024 17:45:50 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Sat, 29 Jun 2024 17:45:58 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Sat, 29 Jun 2024 17:46:03 GMT] [#ID]: BadRequest [#message]: As palavras-chave são requeridas [#status]: 400 [#path]: /post [#method]: POST [#original]: As palavras-chave são requeridas
+[Sat, 29 Jun 2024 17:46:14 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de font (face, generic e size) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de font (face, generic e size)
+[Sat, 29 Jun 2024 17:46:19 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de font (face, generic e size) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de font (face, generic e size)
+[Sat, 29 Jun 2024 17:50:22 GMT] [#ID]: BadRequest [#message]: É requerido uma lista de stacks [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido uma lista de stacks
+[Sat, 29 Jun 2024 17:50:30 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de font (face, generic e size) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de font (face, generic e size)
+[Sat, 29 Jun 2024 17:50:41 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de font (face, generic e size) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de font (face, generic e size)
+[Sat, 29 Jun 2024 17:50:47 GMT] [#ID]: BadRequest [#message]: É requerido uma lista de stacks [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido uma lista de stacks
+[Sat, 29 Jun 2024 17:50:56 GMT] [#ID]: BadRequest [#message]:  [#status]: 400 [#path]: /post [#method]: POST [#original]: 
+[Sat, 29 Jun 2024 17:51:35 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 17:51:48 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 17:51:59 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 17:52:07 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 17:52:18 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 17:52:23 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de lang (code e label) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de lang (code e label)
+[Sat, 29 Jun 2024 18:46:57 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:23:03 GMT] [#ID]: PrismaClientValidationError [#message]: 
+Invalid `DBClient.get().post.findUnique()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:21:44
+
+  18 public static async get(req: IRequest<IPostRequest>, res: IResponse) {
+  19   if (!req.params.slug) throw new NotFound();
+  20 
+→ 21   const post = await DBClient.get().post.findUnique({
+         where: {
+           slug: undefined,
+       ?   id?: String,
+       ?   AND?: PostWhereInput | PostWhereInput[],
+       ?   OR?: PostWhereInput[],
+       ?   NOT?: PostWhereInput | PostWhereInput[],
+       ?   title?: StringFilter | String,
+       ?   htmlContent?: StringFilter | String,
+       ?   description?: StringFilter | String,
+       ?   metaDescription?: StringFilter | String,
+       ?   keywords?: StringNullableListFilter,
+       ?   views?: IntFilter | Int,
+       ?   font?: FontCompositeFilter | FontObjectEqualityInput,
+       ?   stacksId?: StringNullableListFilter,
+       ?   lang?: LangCompositeFilter | LangObjectEqualityInput,
+       ?   editorsId?: StringNullableListFilter,
+       ?   images?: StringNullableListFilter,
+       ?   isPublished?: BoolFilter | Boolean,
+       ?   publishedBy?: StringNullableFilter | String | Null,
+       ?   isLocked?: BoolFilter | Boolean,
+       ?   innerLockedInfo?: InnerLockedInfoNullableCompositeFilter | InnerLockedInfoObjectEqualityInput | Null,
+       ?   createdBy?: StringFilter | String,
+       ?   createdAt?: DateTimeFilter | DateTime,
+       ?   updatedAt?: DateTimeFilter | DateTime,
+       ?   updatedBy?: StringFilter | String
+         }
+       })
+
+Argument `where` of type PostWhereUniqueInput needs at least one of `id` or `slug` arguments. Available options are marked with ?. [#status]: 500 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: GET [#original]: 
+Invalid `DBClient.get().post.findUnique()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:21:44
+
+  18 public static async get(req: IRequest<IPostRequest>, res: IResponse) {
+  19   if (!req.params.slug) throw new NotFound();
+  20 
+→ 21   const post = await DBClient.get().post.findUnique({
+         where: {
+           slug: undefined,
+       ?   id?: String,
+       ?   AND?: PostWhereInput | PostWhereInput[],
+       ?   OR?: PostWhereInput[],
+       ?   NOT?: PostWhereInput | PostWhereInput[],
+       ?   title?: StringFilter | String,
+       ?   htmlContent?: StringFilter | String,
+       ?   description?: StringFilter | String,
+       ?   metaDescription?: StringFilter | String,
+       ?   keywords?: StringNullableListFilter,
+       ?   views?: IntFilter | Int,
+       ?   font?: FontCompositeFilter | FontObjectEqualityInput,
+       ?   stacksId?: StringNullableListFilter,
+       ?   lang?: LangCompositeFilter | LangObjectEqualityInput,
+       ?   editorsId?: StringNullableListFilter,
+       ?   images?: StringNullableListFilter,
+       ?   isPublished?: BoolFilter | Boolean,
+       ?   publishedBy?: StringNullableFilter | String | Null,
+       ?   isLocked?: BoolFilter | Boolean,
+       ?   innerLockedInfo?: InnerLockedInfoNullableCompositeFilter | InnerLockedInfoObjectEqualityInput | Null,
+       ?   createdBy?: StringFilter | String,
+       ?   createdAt?: DateTimeFilter | DateTime,
+       ?   updatedAt?: DateTimeFilter | DateTime,
+       ?   updatedBy?: StringFilter | String
+         }
+       })
+
+Argument `where` of type PostWhereUniqueInput needs at least one of `id` or `slug` arguments. Available options are marked with ?.
+[Sun, 30 Jun 2024 02:24:54 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:25:58 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:27:01 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:27:48 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:28:28 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:30:49 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:31:43 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:34:00 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:34:37 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:35:10 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:35:58 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 02:36:35 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 

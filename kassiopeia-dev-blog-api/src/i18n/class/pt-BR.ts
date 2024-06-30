@@ -32,4 +32,12 @@ export default {
   userMustBeEditor: 'O usuário precisa ser um editor',
   userMustBeMod: 'O usuário precisa ser um moderador',
   nameIsParamRequired: 'O parâmetro nome é requerido',
+  postTitleInvalid: 'Não foi fornecido um título válido',
+  postDescriptionInvalid: 'Não foi fornecida uma descrição válida',
+  keywordsRequired: 'As palavras-chave são requeridas',
+  fontRequired: 'É requerido os atributos de font (face, generic e size)',
+  stacksRequired: 'É requerido uma lista de stacks',
+  langRequired: 'É requerido os atributos de lang (code e label)',
+  postTitleConflict: 'Já foi registrado uma postagem com este título',
+  slugAlreadyExists: 'Slug já cadastrado em outra postagem',
 };
