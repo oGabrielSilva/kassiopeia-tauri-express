@@ -40,4 +40,5 @@ export default {
   langRequired: 'É requerido os atributos de lang (code e label)',
   postTitleConflict: 'Já foi registrado uma postagem com este título',
   slugAlreadyExists: 'Slug já cadastrado em outra postagem',
+  userCantEditPost: 'Usuário não tem permissão para editar este post. Precisa ser um dos editores',
 };

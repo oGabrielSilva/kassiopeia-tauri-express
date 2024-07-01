@@ -2751,3 +2751,285 @@ Argument `where` of type PostWhereUniqueInput needs at least one of `id` or `slu
 [Sun, 30 Jun 2024 02:35:10 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
 [Sun, 30 Jun 2024 02:35:58 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
 [Sun, 30 Jun 2024 02:36:35 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 18:22:01 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 18:28:05 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/e1c0332f803b4c539f2e375f07632f8d [#method]: GET [#original]: 
+[Sun, 30 Jun 2024 19:56:01 GMT] [#ID]: PrismaClientValidationError [#message]: 
+Invalid `client.post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:142:45
+
+  139 }
+  140 
+  141 if (Object.keys(payload).length > 0) {
+→ 142   const postUpdated = await client.post.update({
+          where: {
+            id: "66804f255ab085cb463b61a9"
+          },
+          data: {
+            description: "Testando a descrição",
+            font: {
+              face: "JetBrains Mono",
+              generic: "monospace",
+              size: 12
+            },
+            keywords: [
+              "12"
+            ],
+            lang: {
+              label: "Português (Brasil)",
+              code: "pt-BR"
+            },
+            metaDescription: "meta description test test test test test test test test test test test test",
+            stacks: [],
+            ~~~~~~
+            editors: [
+              "667c4054f81eaf240fe24905"
+            ],
+        ?   title?: String | StringFieldUpdateOperationsInput,
+        ?   slug?: String | StringFieldUpdateOperationsInput,
+        ?   htmlContent?: String | StringFieldUpdateOperationsInput,
+        ?   views?: Int | IntFieldUpdateOperationsInput,
+        ?   stacksId?: PostUpdatestacksIdInput | String[],
+        ?   editorsId?: PostUpdateeditorsIdInput | String[],
+        ?   images?: PostUpdateimagesInput | String[],
+        ?   isPublished?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   publishedBy?: String | NullableStringFieldUpdateOperationsInput | Null,
+        ?   isLocked?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   innerLockedInfo?: InnerLockedInfoNullableUpdateEnvelopeInput | InnerLockedInfoCreateInput | Null,
+        ?   createdBy?: String | StringFieldUpdateOperationsInput,
+        ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedBy?: String | StringFieldUpdateOperationsInput
+          }
+        })
+
+Unknown argument `stacks`. Did you mean `stacksId`? Available options are marked with ?. [#status]: 500 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+Invalid `client.post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:142:45
+
+  139 }
+  140 
+  141 if (Object.keys(payload).length > 0) {
+→ 142   const postUpdated = await client.post.update({
+          where: {
+            id: "66804f255ab085cb463b61a9"
+          },
+          data: {
+            description: "Testando a descrição",
+            font: {
+              face: "JetBrains Mono",
+              generic: "monospace",
+              size: 12
+            },
+            keywords: [
+              "12"
+            ],
+            lang: {
+              label: "Português (Brasil)",
+              code: "pt-BR"
+            },
+            metaDescription: "meta description test test test test test test test test test test test test",
+            stacks: [],
+            ~~~~~~
+            editors: [
+              "667c4054f81eaf240fe24905"
+            ],
+        ?   title?: String | StringFieldUpdateOperationsInput,
+        ?   slug?: String | StringFieldUpdateOperationsInput,
+        ?   htmlContent?: String | StringFieldUpdateOperationsInput,
+        ?   views?: Int | IntFieldUpdateOperationsInput,
+        ?   stacksId?: PostUpdatestacksIdInput | String[],
+        ?   editorsId?: PostUpdateeditorsIdInput | String[],
+        ?   images?: PostUpdateimagesInput | String[],
+        ?   isPublished?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   publishedBy?: String | NullableStringFieldUpdateOperationsInput | Null,
+        ?   isLocked?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   innerLockedInfo?: InnerLockedInfoNullableUpdateEnvelopeInput | InnerLockedInfoCreateInput | Null,
+        ?   createdBy?: String | StringFieldUpdateOperationsInput,
+        ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedBy?: String | StringFieldUpdateOperationsInput
+          }
+        })
+
+Unknown argument `stacks`. Did you mean `stacksId`? Available options are marked with ?.
+[Sun, 30 Jun 2024 20:01:14 GMT] [#ID]: PrismaClientValidationError [#message]: 
+Invalid `client.post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:146:45
+
+  143 }
+  144 
+  145 if (Object.keys(payload).length > 0) {
+→ 146   const postUpdated = await client.post.update({
+          where: {
+            id: "66804f255ab085cb463b61a9"
+          },
+          data: {
+            description: "Testando a descrição",
+            font: {
+              face: "JetBrains Mono",
+              generic: "monospace",
+              size: 12
+            },
+            keywords: [
+              "12"
+            ],
+            lang: {
+              label: "Português (Brasil)",
+              code: "pt-BR"
+            },
+            metaDescription: "meta description test test test test test test test test test test test test",
+            stacksId: [],
+            editors: [
+            ~~~~~~~
+              "667c4054f81eaf240fe24905"
+            ],
+        ?   title?: String | StringFieldUpdateOperationsInput,
+        ?   slug?: String | StringFieldUpdateOperationsInput,
+        ?   htmlContent?: String | StringFieldUpdateOperationsInput,
+        ?   views?: Int | IntFieldUpdateOperationsInput,
+        ?   editorsId?: PostUpdateeditorsIdInput | String[],
+        ?   images?: PostUpdateimagesInput | String[],
+        ?   isPublished?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   publishedBy?: String | NullableStringFieldUpdateOperationsInput | Null,
+        ?   isLocked?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   innerLockedInfo?: InnerLockedInfoNullableUpdateEnvelopeInput | InnerLockedInfoCreateInput | Null,
+        ?   createdBy?: String | StringFieldUpdateOperationsInput,
+        ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedBy?: String | StringFieldUpdateOperationsInput
+          }
+        })
+
+Unknown argument `editors`. Did you mean `editorsId`? Available options are marked with ?. [#status]: 500 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+Invalid `client.post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\controllers\PostController.ts:146:45
+
+  143 }
+  144 
+  145 if (Object.keys(payload).length > 0) {
+→ 146   const postUpdated = await client.post.update({
+          where: {
+            id: "66804f255ab085cb463b61a9"
+          },
+          data: {
+            description: "Testando a descrição",
+            font: {
+              face: "JetBrains Mono",
+              generic: "monospace",
+              size: 12
+            },
+            keywords: [
+              "12"
+            ],
+            lang: {
+              label: "Português (Brasil)",
+              code: "pt-BR"
+            },
+            metaDescription: "meta description test test test test test test test test test test test test",
+            stacksId: [],
+            editors: [
+            ~~~~~~~
+              "667c4054f81eaf240fe24905"
+            ],
+        ?   title?: String | StringFieldUpdateOperationsInput,
+        ?   slug?: String | StringFieldUpdateOperationsInput,
+        ?   htmlContent?: String | StringFieldUpdateOperationsInput,
+        ?   views?: Int | IntFieldUpdateOperationsInput,
+        ?   editorsId?: PostUpdateeditorsIdInput | String[],
+        ?   images?: PostUpdateimagesInput | String[],
+        ?   isPublished?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   publishedBy?: String | NullableStringFieldUpdateOperationsInput | Null,
+        ?   isLocked?: Boolean | BoolFieldUpdateOperationsInput,
+        ?   innerLockedInfo?: InnerLockedInfoNullableUpdateEnvelopeInput | InnerLockedInfoCreateInput | Null,
+        ?   createdBy?: String | StringFieldUpdateOperationsInput,
+        ?   createdAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedAt?: DateTime | DateTimeFieldUpdateOperationsInput,
+        ?   updatedBy?: String | StringFieldUpdateOperationsInput
+          }
+        })
+
+Unknown argument `editors`. Did you mean `editorsId`? Available options are marked with ?.
+[Sun, 30 Jun 2024 20:13:39 GMT] [#ID]: Unauthorized [#message]: Usuário não tem permissão para editar este post. Precisa ser um dos editores [#status]: 401 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: Usuário não tem permissão para editar este post. Precisa ser um dos editores
+[Sun, 30 Jun 2024 20:15:27 GMT] [#ID]: Unauthorized [#message]: Usuário não tem permissão para editar este post. Precisa ser um dos editores [#status]: 401 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: Usuário não tem permissão para editar este post. Precisa ser um dos editores
+[Sun, 30 Jun 2024 20:36:42 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post [#method]: GET [#original]: 
+[Sun, 30 Jun 2024 22:40:26 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/test%20for%20slug [#method]: PATCH [#original]: 
+[Sun, 30 Jun 2024 23:25:56 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:30:12 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:30:15 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:31:05 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:33:13 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:34:17 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/2ad57c0c72cb4fafb6a33aeb95e9bcd0 [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:35:21 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/test%20for%20slug [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:36:16 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/test%20for%20slug [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:37:12 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post/test%20for%20slug [#method]: DELETE [#original]: 
+[Sun, 30 Jun 2024 23:47:30 GMT] [#ID]: PrismaClientKnownRequestError [#message]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found. [#status]: 500 [#path]: /post/user [#method]: GET [#original]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[Sun, 30 Jun 2024 23:50:36 GMT] [#ID]: PrismaClientKnownRequestError [#message]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found. [#status]: 500 [#path]: /post/user [#method]: GET [#original]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[Sun, 30 Jun 2024 23:51:08 GMT] [#ID]: PrismaClientKnownRequestError [#message]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found. [#status]: 500 [#path]: /post/user [#method]: GET [#original]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[Sun, 30 Jun 2024 23:51:54 GMT] [#ID]: PrismaClientKnownRequestError [#message]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found. [#status]: 500 [#path]: /post/user [#method]: GET [#original]: 
+Invalid `DBClient.get().post.update()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\post\services\PostService.ts:13:44
+
+  10 private static instance: PostService;
+  11 
+  12 public async getAndIncrementView(slug: string) {
+→ 13   const data = await DBClient.get().post.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+[Sun, 30 Jun 2024 23:55:05 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/user [#method]: GET [#original]: 
+[Mon, 01 Jul 2024 00:00:26 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/user [#method]: GET [#original]: 
+[Mon, 01 Jul 2024 00:00:37 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 

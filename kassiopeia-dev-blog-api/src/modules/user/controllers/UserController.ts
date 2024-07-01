@@ -17,6 +17,7 @@ import { Forbidden } from '@/exceptions/class/Forbidden';
 import { IdGen } from '@/utilities/IdGen';
 import { EmailService } from '@/modules/email/services/EmailService';
 import { EmailTemplate } from '@/modules/email/EmailTemplate';
+import { PostEntity } from '@/modules/post/entities/PostEntity';
 
 export class UserController {
   public static get AVATAR_PATH() {
@@ -274,5 +275,14 @@ export class UserController {
     );
 
     res.status(201).end();
+  }
+  public static async getAllPosts(_: IRequest, res: IResponse) {
+    const posts = (
+      await DBClient.get().post.findMany({
+        where: { createdBy: res.locals.session?.id ?? '' },
+      })
+    ).map(async (p) => await PostEntity.from(p).toDTO());
+
+    res.status(200).json(await Promise.all(posts));
   }
 }

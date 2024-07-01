@@ -9,6 +9,38 @@ import type { Font, Lang } from '@prisma/client';
 export class PostService {
   private static instance: PostService;
 
+  public async getAndIncrementView(slug: string) {
+    try {
+      const data = await DBClient.get().post.update({
+        where: {
+          slug: slug,
+        },
+        data: {
+          views: { increment: 1 },
+        },
+      });
+      return PostEntity.from(data);
+    } catch (error) {
+      return null;
+    }
+  }
+
+  public async incrementViews(slugs: string[]) {
+    try {
+      await DBClient.get().post.updateMany({
+        where: { slug: { in: slugs } },
+        data: {
+          views: {
+            increment: 1,
+          },
+        },
+      });
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+
   public isFontPayloadValid(font: Partial<Font>) {
     return (
       font &&

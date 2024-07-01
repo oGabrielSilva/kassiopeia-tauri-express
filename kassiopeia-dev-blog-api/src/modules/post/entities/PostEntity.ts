@@ -62,19 +62,15 @@ export class PostEntity implements Post {
           }))!
     ).toDTO();
 
-    const editors =
-      editorsId.length > 1
-        ? (editorsAlreadySearched
-            ? editorsAlreadySearched
-            : await client.user.findMany({
-                where: {
-                  id: { in: editorsId },
-                },
-              })
-          ).map((entity) =>
-            entity.email === author.email ? author : UserEntity.from(entity).toDTO()
-          )
-        : [author];
+    const editors = (
+      editorsAlreadySearched
+        ? editorsAlreadySearched
+        : await client.user.findMany({
+            where: {
+              id: { in: editorsId },
+            },
+          })
+    ).map((entity) => (entity.email === author.email ? author : UserEntity.from(entity).toDTO()));
 
     const stacks = (
       stackAlreadySearched

@@ -3,8 +3,16 @@ import { adapter } from '@/routes/utilities/adapter';
 import { authenticationMiddleware } from '@/modules/user/middlewares/authentication';
 import e from 'express';
 import { upload } from '@/middlewares/multer';
+import { onlyEditorMiddleware } from '../middlewares/editor';
 
 const userRouter = e.Router();
+
+userRouter.get(
+  '/user/posts',
+  adapter(authenticationMiddleware),
+  adapter(onlyEditorMiddleware),
+  adapter(UserController.getAllPosts)
+);
 
 userRouter.get('/users/avatar/:id', adapter(UserController.getAvatar));
 

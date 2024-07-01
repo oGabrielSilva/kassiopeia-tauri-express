@@ -7,6 +7,7 @@ import { authenticationMiddleware } from '@/modules/user/middlewares/authenticat
 const postRouter = e.Router();
 
 postRouter.get('/post/:slug', adapter(PostController.get));
+postRouter.get('/post', adapter(PostController.getAll));
 
 postRouter.post(
   '/post',
@@ -20,6 +21,13 @@ postRouter.patch(
   adapter(authenticationMiddleware),
   adapter(onlyEditorMiddleware),
   adapter(PostController.partialUpdate)
+);
+
+postRouter.delete(
+  '/post/:slug',
+  adapter(authenticationMiddleware),
+  adapter(onlyEditorMiddleware),
+  adapter(PostController.delete)
 );
 
 export default postRouter;
