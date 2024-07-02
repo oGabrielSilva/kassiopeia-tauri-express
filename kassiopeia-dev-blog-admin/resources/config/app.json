@@ -1,5 +1,87 @@
 {
   "api": "http://127.0.0.1:3001",
   "sessionEventAnotherWindowKey": "auth__evn",
-  "AVATAR_MAX_WIDTH": 3145728
+  "AVATAR_MAX_WIDTH": 3145728,
+  "langOptions": [
+    {
+      "display": "Português (Brasil, pt-BR)",
+      "code": "pt-BR",
+      "label": "Português (Brasil)"
+    },
+    {
+      "display": "Português (Portugal, pt-PT)",
+      "code": "pt-PT",
+      "label": "Português (Portugal)"
+    },
+    {
+      "display": "English (United Kingdom, en-GB)",
+      "code": "en-GB",
+      "label": "English (United Kingdom)"
+    },
+    {
+      "display": "English (United States, en-US)",
+      "code": "en-US",
+      "label": "English (United States)"
+    },
+    {
+      "display": "Spanish (Spain, es-ES)",
+      "code": "es-ES",
+      "label": "Spanish (Spain)"
+    },
+    {
+      "display": "Spanish (Argentina, es-AR)",
+      "code": "es-AR",
+      "label": "Spanish (Argentina)"
+    }
+  ],
+  "fontOptions": [
+    {
+      "display": "Lato, sans-serif",
+      "face": "Lato",
+      "generic": "sans-serif"
+    },
+    {
+      "display": "Roboto, sans-serif",
+      "face": "Roboto",
+      "generic": "sans-serif"
+    },
+    {
+      "display": "Reddit Sans, sans-serif",
+      "face": "Reddit Sans",
+      "generic": "sans-serif"
+    },
+    {
+      "display": "Noto Sans, sans-serif",
+      "face": "Noto Sans",
+      "generic": "sans-serif"
+    },
+
+    { "display": "Tinos, serif", "face": "Tinos", "generic": "serif" },
+    {
+      "display": "Noto Serif, serif",
+      "face": "Noto Serif",
+      "generic": "serif"
+    },
+    {
+      "display": "IBM Plex Serif, serif",
+      "face": "IBM Plex Serif",
+      "generic": "serif"
+    },
+
+    {
+      "display": "JetBrains Mono, monospace",
+      "face": "JetBrains Mono",
+      "generic": "monospace"
+    },
+    {
+      "display": "Reddit Mono, monospace",
+      "face": "Reddit Mono",
+      "generic": "monospace"
+    },
+    {
+      "display": "IBM Plex Mono, monospace",
+      "face": "IBM Plex Mono",
+      "generic": "monospace"
+    }
+  ]
 }

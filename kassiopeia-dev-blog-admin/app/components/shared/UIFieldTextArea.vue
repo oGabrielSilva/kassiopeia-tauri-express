@@ -5,10 +5,13 @@
       :class="{ 'has-icons-left': props.hasIconLeft ?? false, control: true }"
     >
       <textarea
-        ref="input"
-        :class="{ input: true, 'is-danger': props.helper?.isVisible }"
-        :name="props.name"
         :id="props.inputId"
+        ref="input"
+        :class="{
+          input: true,
+          'is-danger': props.helper?.isVisible && !!input?.value.length,
+        }"
+        :name="props.name"
         :placeholder="props.placeholder"
         :rows="props.rows ?? 1"
         @input="() => emits('on:input', input?.value ?? '')"
@@ -16,7 +19,7 @@
       <slot name="icon" />
     </div>
     <p
-      v-if="props.helper && props.helper.isVisible"
+      v-if="props.helper && props.helper.isVisible && !!input?.value.length"
       :id="props.inputId + '-helper'"
       class="help is-danger"
     >
@@ -26,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { defineEmits, defineProps, onMounted, ref } from 'vue'
 
 interface IFieldInputProps {
   label: string

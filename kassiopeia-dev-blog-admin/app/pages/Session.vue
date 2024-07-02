@@ -4,7 +4,7 @@
   >
     <div class="has-text-centered">
       <h1 class="title mb-0">
-        {{ strings.title }}
+        {{ strings.sessionTitle }}
       </h1>
       <p>{{ strings.titleHelper }}</p>
     </div>

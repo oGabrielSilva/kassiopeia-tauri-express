@@ -1,20 +1,20 @@
 <template>
   <div>
-    <section class="container" v-if="view === 'STACKS'">
+    <section v-if="view === 'STACKS'" class="container">
       <UIStacksHomeView />
     </section>
 
-    <section class="container" v-if="view === 'WRITE'">
+    <section v-if="view === 'WRITE'" class="container">
       <UIWritePostView />
     </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useHome } from '@app/stores/useHome'
-import UIStacksHomeView from '@app/components/home/views/UIStacksHomeView.vue'
-import { computed } from 'vue'
-import UIWritePostView from '@app/components/home/views/UIWritePostView.vue'
+import UIStacksHomeView from '@app/components/home/views/UIStacksHomeView.vue';
+import UIWritePostView from '@app/components/home/views/UIWritePostView.vue';
+import { useHome } from '@app/stores/useHome';
+import { computed } from 'vue';
 
 const home = useHome()
 

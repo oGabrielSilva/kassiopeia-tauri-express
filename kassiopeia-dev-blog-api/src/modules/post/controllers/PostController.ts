@@ -1,17 +1,17 @@
-import crypto from 'crypto';
-import type { IPostPatch, IPostRequest } from '@/modules/post/types/IPost';
-import { BadRequest } from '@/exceptions/class/BadRequest';
-import { PostService } from '@/modules/post/services/PostService';
-import { InternalServerError } from '@/exceptions/class/InternalServerError';
-import { UserService } from '@/modules/user/services/UserService';
-import { UserEntity } from '@/modules/user/entities/UserEntity';
-import { StackEntity } from '@/modules/stack/entities/StackEntity';
-import { PostEntity } from '@/modules/post/entities/PostEntity';
-import { NotFound } from '@/exceptions/class/NotFound';
 import { DBClient } from '@/db/DBClient';
-import { Unauthorized } from '@/exceptions/class/Unauthorized';
-import { isMetaDescriptionValid } from '@/validation/meta';
+import { BadRequest } from '@/exceptions/class/BadRequest';
 import { Conflict } from '@/exceptions/class/Conflict';
+import { InternalServerError } from '@/exceptions/class/InternalServerError';
+import { NotFound } from '@/exceptions/class/NotFound';
+import { Unauthorized } from '@/exceptions/class/Unauthorized';
+import { PostEntity } from '@/modules/post/entities/PostEntity';
+import { PostService } from '@/modules/post/services/PostService';
+import type { IPostPatch, IPostRequest } from '@/modules/post/types/IPost';
+import { StackEntity } from '@/modules/stack/entities/StackEntity';
+import { UserEntity } from '@/modules/user/entities/UserEntity';
+import { UserService } from '@/modules/user/services/UserService';
+import { isMetaDescriptionValid } from '@/validation/meta';
+import crypto from 'crypto';
 
 export class PostController {
   public static async get(req: IRequest<IPostRequest>, res: IResponse) {
@@ -24,7 +24,6 @@ export class PostController {
   }
 
   public static async getAll(req: IRequest<IPostRequest>, res: IResponse) {
-    console.log(req.query);
     let size = Number(req.query.size);
     let skip = Number(req.query.skip);
 

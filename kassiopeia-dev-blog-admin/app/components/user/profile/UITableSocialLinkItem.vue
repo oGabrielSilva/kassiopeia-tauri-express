@@ -22,9 +22,9 @@
           </span>
         </button>
         <button
-          @click="() => (isModalDeleteVisible = true)"
           type="button"
           class="button is-danger is-outlined"
+          @click="() => (isModalDeleteVisible = true)"
         >
           <span class="icon is-small">
             <font-awesome-icon icon="trash-can" />
@@ -35,7 +35,6 @@
       <UIModal
         v-if="isModalDeleteVisible"
         :title="strings.modalRemoveSocialLinkTitle"
-        @hide="hideDeleteModal"
         :cancel-button="{ text: strings['no-cancel'] }"
         :success-button="{
           text: strings['yes-remove'],
@@ -43,6 +42,7 @@
           bulmaStyle: 'is-warning',
           hideModal: false,
         }"
+        @hide="hideDeleteModal"
       >
         <div>
           <p>
@@ -78,7 +78,7 @@ import {
   ScreenLockerKassiopeiaTool,
   type ToasterKassiopeiaTool,
 } from 'kassiopeia-tools'
-import { onMounted, ref } from 'vue'
+import { defineProps, onMounted, ref } from 'vue'
 
 interface IUITableSocialLinkItemProps {
   link: ISocial

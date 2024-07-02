@@ -5,17 +5,19 @@
     role="button"
     aria-label="menu"
     aria-expanded="false"
-    @click="onClick"
     data-ui-burger-button
+    @click="onClick"
   >
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
-    <span aria-hidden="true"></span>
+    <span aria-hidden="true" />
+    <span aria-hidden="true" />
+    <span aria-hidden="true" />
+    <span aria-hidden="true" />
   </button>
 </template>
 
 <script setup lang="ts">
+import { defineEmits, defineProps } from 'vue'
+
 interface IUIBurgerProps {
   isActive: boolean
 }

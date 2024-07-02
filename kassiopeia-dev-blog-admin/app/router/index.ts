@@ -1,5 +1,5 @@
-import { createMemoryHistory, createRouter } from 'vue-router'
 import type { RouteRecordRaw } from 'vue-router'
+import { createMemoryHistory, createRouter } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
   { path: '/', component: () => import('@app/pages/Index.vue') },

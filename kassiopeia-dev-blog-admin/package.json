@@ -22,15 +22,16 @@
     "vue-router": "4"
   },
   "devDependencies": {
-    "@eslint/js": "^9.5.0",
+    "@eslint/js": "^9.6.0",
     "@tauri-apps/cli": "^1",
+    "@typescript-eslint/parser": "^7.14.1",
     "@vitejs/plugin-vue": "^5.0.4",
-    "eslint": "9.x",
+    "eslint": "^9.6.0",
     "eslint-plugin-vue": "^9.26.0",
-    "globals": "^15.6.0",
+    "globals": "^15.7.0",
     "prettier": "^3.3.2",
     "typescript": "^5.0.2",
-    "typescript-eslint": "^7.13.1",
+    "typescript-eslint": "^7.14.1",
     "vite": "^5.0.0",
     "vue-tsc": "^1.8.5"
   },

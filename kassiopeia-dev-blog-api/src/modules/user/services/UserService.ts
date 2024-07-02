@@ -1,6 +1,7 @@
 import { DBClient } from '@/db/DBClient';
-import { UserEntity } from '../entities/UserEntity';
 import { Forbidden } from '@/exceptions/class/Forbidden';
+import { $Enums } from '@prisma/client';
+import { UserEntity } from '../entities/UserEntity';
 
 export class UserService {
   private static instance: UserService;
@@ -24,6 +25,18 @@ export class UserService {
 
     if (user === null) throw new Forbidden();
     return UserEntity.from(user);
+  }
+
+  public authoritiesBelow(authority: unknown): $Enums.Role[] {
+    if (typeof authority === 'string') {
+      if (authority === 'COMMON') return ['COMMON'];
+      if (authority === 'EDITOR') return ['EDITOR', 'COMMON'];
+      if (authority === 'HELPER') return ['HELPER', 'EDITOR', 'COMMON'];
+      if (authority === 'MODERATOR') return ['MODERATOR', 'HELPER', 'EDITOR', 'COMMON'];
+      if (authority === 'ADMIN') return ['ADMIN', 'MODERATOR', 'HELPER', 'EDITOR', 'COMMON'];
+      if (authority === 'ROOT') return ['ROOT', 'ADMIN', 'MODERATOR', 'HELPER', 'EDITOR', 'COMMON'];
+    }
+    return [];
   }
 
   public static get service() {

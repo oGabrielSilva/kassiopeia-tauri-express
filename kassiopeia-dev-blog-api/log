@@ -3033,3 +3033,40 @@ An operation failed because it depends on one or more records that were required
 [Sun, 30 Jun 2024 23:55:05 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/user [#method]: GET [#original]: 
 [Mon, 01 Jul 2024 00:00:26 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /post/user [#method]: GET [#original]: 
 [Mon, 01 Jul 2024 00:00:37 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Mon, 01 Jul 2024 15:39:21 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Mon, 01 Jul 2024 17:17:13 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Mon, 01 Jul 2024 17:17:13 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Mon, 01 Jul 2024 21:16:45 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /favicon.ico [#method]: GET [#original]: 
+[Mon, 01 Jul 2024 21:45:30 GMT] [#ID]: PrismaClientValidationError [#message]: 
+Invalid `DBClient.get().user.findMany()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\user\controllers\UserController.ts:63:33
+
+  60 if (!size || Number.isNaN(size)) size = 25;
+  61 if (!skip || Number.isNaN(skip)) skip = 0;
+  62 const users = (
+→ 63   await DBClient.get().user.findMany({
+         skip: 0,
+         take: 25,
+         where: {
+           authority: "MOD"
+                      ~~~~~
+         }
+       })
+
+Invalid value for argument `authority`. Expected Role. [#status]: 500 [#path]: /user [#method]: GET [#original]: 
+Invalid `DBClient.get().user.findMany()` invocation in
+C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\user\controllers\UserController.ts:63:33
+
+  60 if (!size || Number.isNaN(size)) size = 25;
+  61 if (!skip || Number.isNaN(skip)) skip = 0;
+  62 const users = (
+→ 63   await DBClient.get().user.findMany({
+         skip: 0,
+         take: 25,
+         where: {
+           authority: "MOD"
+                      ~~~~~
+         }
+       })
+
+Invalid value for argument `authority`. Expected Role.

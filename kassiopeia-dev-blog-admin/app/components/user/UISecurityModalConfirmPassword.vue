@@ -2,7 +2,6 @@
   <div>
     <form @submit="onSubmit">
       <UIModal
-        @hide="emits('hide')"
         :title="strings.confirmPassword"
         :success-button="{
           text: strings.confirm,
@@ -11,6 +10,7 @@
           type: 'submit',
         }"
         :cancel-button="{ text: strings.cancel }"
+        @hide="emits('hide')"
       >
         <div>
           <UIFieldInput
@@ -44,9 +44,9 @@
             <template #icon>
               <span class="icon is-small is-left">
                 <font-awesome-icon
+                  v-if="password.length > 0 && !isPasswordValid"
                   icon="lock"
                   class="has-text-danger"
-                  v-if="password.length > 0 && !isPasswordValid"
                 />
                 <font-awesome-icon v-else icon="unlock-keyhole" />
               </span>
@@ -67,12 +67,12 @@ import { useI18n } from '@app/stores/useI18n'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import {
+  ScreenLockerKassiopeiaTool,
+  ValidationKassiopeiaTool,
   type AnimationKassiopeiaTool,
   type ToasterKassiopeiaTool,
-  ValidationKassiopeiaTool,
-  ScreenLockerKassiopeiaTool,
 } from 'kassiopeia-tools'
-import { onMounted, ref } from 'vue'
+import { defineEmits, onMounted, ref } from 'vue'
 
 const strings = useI18n()
 const auth = useAuth()

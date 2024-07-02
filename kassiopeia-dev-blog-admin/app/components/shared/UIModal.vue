@@ -3,12 +3,14 @@
     <div class="modal-background" />
     <div class="modal-card">
       <header class="modal-card-head">
-        <h1 class="modal-card-title">{{ props.title }}</h1>
+        <h1 class="modal-card-title">
+          {{ props.title }}
+        </h1>
         <button
           type="button"
-          @click="() => emits('hide')"
           class="delete"
           aria-label="close"
+          @click="() => emits('hide')"
         />
       </header>
       <section v-if="$slots.default" class="modal-card-body">
@@ -17,6 +19,15 @@
       <footer class="modal-card-foot">
         <div class="buttons">
           <button
+            v-if="!!props.successButton"
+            :type="props.successButton?.type ?? 'button'"
+            :class="[
+              'button',
+              ...(props.successButton.bulmaStyle
+                ? [props.successButton.bulmaStyle]
+                : ['is-primary']),
+              ...(props.successButton.isOutlined ? ['is-outlined'] : []),
+            ]"
             @click="
               (e) => {
                 if (
@@ -34,20 +45,19 @@
                 }
               }
             "
-            v-if="!!props.successButton"
-            :type="props.successButton?.type ?? 'button'"
-            :class="[
-              'button',
-              ...(props.successButton.bulmaStyle
-                ? [props.successButton.bulmaStyle]
-                : ['is-primary']),
-              ...(props.successButton.isOutlined ? ['is-outlined'] : []),
-            ]"
           >
             {{ props.successButton.text }}
           </button>
           <button
             v-if="!!props.cancelButton"
+            :type="props.cancelButton?.type ?? 'button'"
+            :class="[
+              'button',
+              ...(props.cancelButton.bulmaStyle
+                ? [props.cancelButton.bulmaStyle]
+                : []),
+              ...(props.cancelButton.isOutlined ? ['is-outlined'] : []),
+            ]"
             @click="
               (e) => {
                 if (
@@ -65,14 +75,6 @@
                 }
               }
             "
-            :type="props.cancelButton?.type ?? 'button'"
-            :class="[
-              'button',
-              ...(props.cancelButton.bulmaStyle
-                ? [props.cancelButton.bulmaStyle]
-                : []),
-              ...(props.cancelButton.isOutlined ? ['is-outlined'] : []),
-            ]"
           >
             {{ props.cancelButton.text }}
           </button>
@@ -83,7 +85,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onUnmounted } from 'vue'
+import { defineEmits, defineProps, onMounted, onUnmounted } from 'vue'
 
 type TButtonClick = (e: Event, button: HTMLButtonElement) => void
 

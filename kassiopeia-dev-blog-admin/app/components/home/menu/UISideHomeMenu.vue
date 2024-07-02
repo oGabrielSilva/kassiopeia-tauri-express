@@ -7,7 +7,9 @@
       left: home.isNavbarHidden ? '-100%' : '0',
     }"
   >
-    <p class="menu-label">{{ strings.geral }}</p>
+    <p class="menu-label">
+      {{ strings.geral }}
+    </p>
     <ul class="menu-list">
       <li v-if="auth.user?.isEditor()">
         <a
@@ -36,7 +38,9 @@
       </li>
     </ul>
 
-    <p class="menu-label">{{ strings.edition }}</p>
+    <p class="menu-label">
+      {{ strings.edition }}
+    </p>
     <ul class="menu-list">
       <li v-if="auth.user?.isEditor()">
         <a
@@ -76,10 +80,14 @@
       </li>
     </ul>
 
-    <p class="menu-label">{{ strings.admin }}</p>
-    <ul class="menu-list"></ul>
+    <p class="menu-label">
+      {{ strings.admin }}
+    </p>
+    <ul class="menu-list" />
 
-    <p class="menu-label">{{ strings.profile }}</p>
+    <p class="menu-label">
+      {{ strings.profile }}
+    </p>
     <ul class="menu-list">
       <li>
         <RouterLink to="/user">
@@ -91,7 +99,7 @@
       </li>
 
       <li>
-        <a @click="signOut" data-sign-out class="has-text-danger">
+        <a data-sign-out class="has-text-danger" @click="signOut">
           <span class="icon is-small">
             <font-awesome-icon icon="power-off" />
           </span>
@@ -103,11 +111,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useHome } from '@app/stores/useHome'
-import { useSafeArea } from '@app/stores/useSafeArea'
-import { useI18n } from '@app/stores/useI18n'
 import { useAuth } from '@app/stores/useAuth'
+import { useHome } from '@app/stores/useHome'
+import { useI18n } from '@app/stores/useI18n'
+import { useSafeArea } from '@app/stores/useSafeArea'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const home = useHome()
@@ -153,7 +161,7 @@ a {
   left: 0;
   border-right: 2px solid var(--bulma-background);
   transition: all 400ms ease-in-out;
-  z-index: 2;
+  z-index: 10;
   background: var(--bulma-body-background-color);
 }
 </style>

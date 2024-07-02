@@ -1,7 +1,6 @@
 <template>
   <form @submit="onSubmit">
     <UIModal
-      @hide="emits('hide')"
       :title="!!props.editStack ? strings.editStack : strings.addStack"
       :success-button="{
         text: strings.save,
@@ -9,9 +8,9 @@
         hideModal: false,
       }"
       :cancel-button="{ text: strings.cancel }"
+      @hide="emits('hide')"
     >
       <UIFieldInput
-        @on:input="(value) => (createStackFormMetadata.nameImputed = value)"
         type="text"
         input-id="stack-name"
         :initial-value="props.editStack ? props.editStack.name : ''"
@@ -23,6 +22,7 @@
             !validation.isNameValid(createStackFormMetadata.nameImputed),
         }"
         has-icon-left
+        @on:input="(value) => (createStackFormMetadata.nameImputed = value)"
       >
         <template #icon>
           <span class="icon is-small is-left">
@@ -32,33 +32,32 @@
       </UIFieldInput>
 
       <UIFieldTextArea
-        @on:input="
-          (value) => (createStackFormMetadata.descriptionImputed = value)
-        "
         input-id="stack-desc"
         :rows="5"
         :label="strings.description"
         :initial-value="
           props.editStack ? props.editStack.description ?? '' : ''
         "
+        @on:input="
+          (value) => (createStackFormMetadata.descriptionImputed = value)
+        "
       />
 
       <UIFieldTextArea
-        @on:input="
-          (value) => (createStackFormMetadata.metaDescriptionImputed = value)
-        "
         input-id="stack-meta-desc"
         :rows="3"
         :initial-value="props.editStack ? props.editStack.metaDescription : ''"
         :label="strings.metaDescriptionLabel"
         :helper="{
-          isVisible:
-            !!createStackFormMetadata.metaDescriptionImputed &&
-            (createStackFormMetadata.metaDescriptionImputed.length > 160 ||
-              createStackFormMetadata.metaDescriptionImputed.length < 50),
+          isVisible: isMetaDescriptionValid(
+            createStackFormMetadata.metaDescriptionImputed,
+          ),
           text: strings.metaDescriptionHelper,
         }"
         has-icon-left
+        @on:input="
+          (value) => (createStackFormMetadata.metaDescriptionImputed = value)
+        "
       >
         <template #icon>
           <span class="icon is-small is-left">
@@ -74,22 +73,23 @@
 </template>
 
 <script setup lang="ts">
-import UIModal from '@app/components/shared/UIModal.vue'
 import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
 import UIFieldTextArea from '@app/components/shared/UIFieldTextArea.vue'
-import {
-  type ToasterKassiopeiaTool,
-  ValidationKassiopeiaTool,
-  ScreenLockerKassiopeiaTool,
-} from 'kassiopeia-tools'
-import { onMounted, reactive, defineEmits } from 'vue'
-import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
-import { JsonAPI } from '@app/utilities/JsonAPI'
-import { isForbidden } from '@app/utilities/isForbidden'
-import { forbidden } from '@app/utilities/forbidden'
-import { useI18n } from '@app/stores/useI18n'
+import UIModal from '@app/components/shared/UIModal.vue'
 import type { IStack, Stack } from '@app/models/Stack'
 import { useHome } from '@app/stores/useHome'
+import { useI18n } from '@app/stores/useI18n'
+import { JsonAPI } from '@app/utilities/JsonAPI'
+import { forbidden } from '@app/utilities/forbidden'
+import { isForbidden } from '@app/utilities/isForbidden'
+import { isMetaDescriptionValid } from '@app/utilities/isMetaDescriptionValid'
+import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
+import {
+  ScreenLockerKassiopeiaTool,
+  ValidationKassiopeiaTool,
+  type ToasterKassiopeiaTool,
+} from 'kassiopeia-tools'
+import { defineEmits, defineProps, onMounted, reactive } from 'vue'
 
 interface IStackFormProps {
   editStack?: Stack
@@ -123,7 +123,7 @@ function resetNewStackModal() {
 async function onSubmit(e: Event) {
   e.preventDefault()
 
-  if (!!props.editStack) {
+  if (props.editStack) {
     submitEdit()
     return
   }
@@ -133,7 +133,7 @@ async function onSubmit(e: Event) {
 
     const inp = document.getElementById('stack-name')
     toaster.animationTool
-      .shakeX(inp?.parentElement!, false, 800)
+      .shakeX(inp!.parentElement!, false, 800)
       .addEventOnCompletion(() => {
         inp?.focus()
       })
@@ -145,7 +145,7 @@ async function onSubmit(e: Event) {
 
     const inp = document.getElementById('stack-meta-desc')
     toaster.animationTool
-      .shakeX(inp?.parentElement!, false, 800)
+      .shakeX(inp!.parentElement!, false, 800)
       .addEventOnCompletion(() => {
         inp?.focus()
       })
@@ -185,7 +185,7 @@ async function submitEdit() {
 
     const inp = document.getElementById('stack-name')
     toaster.animationTool
-      .shakeX(inp?.parentElement!, false, 800)
+      .shakeX(inp!.parentElement!, false, 800)
       .addEventOnCompletion(() => {
         inp?.focus()
       })
@@ -197,7 +197,7 @@ async function submitEdit() {
 
     const inp = document.getElementById('stack-meta-desc')
     toaster.animationTool
-      .shakeX(inp?.parentElement!, false, 800)
+      .shakeX(inp!.parentElement!, false, 800)
       .addEventOnCompletion(() => {
         inp?.focus()
       })

@@ -4,25 +4,33 @@
     <div
       :class="{ 'has-icons-left': props.hasIconLeft ?? false, control: true }"
     >
+      <!-- eslint-disable-next-line vue/html-self-closing -->
       <input
+        :id="props.inputId"
         ref="input"
         :class="{
           input: true,
-          'is-danger': props.helper?.isVisible,
+          'is-danger': props.helper?.isVisible && !!input?.value.length,
           'is-clickable': props.readonly,
         }"
         :name="props.name"
         :type="props.type"
-        :id="props.inputId"
         :placeholder="props.placeholder"
-        @input="() => emits('on:input', input?.value ?? '')"
         :readonly="props.readonly"
         :disabled="props.disabled"
+        @input="() => emits('on:input', input?.value ?? '')"
       />
       <slot name="icon" />
     </div>
     <p
-      v-if="!!(props.helper && props.helper.isVisible && props.helper.text)"
+      v-if="
+        !!(
+          props.helper &&
+          props.helper.isVisible &&
+          props.helper.text &&
+          !!input?.value.length
+        )
+      "
       :id="props.inputId + '-helper'"
       class="help is-danger"
     >
@@ -32,7 +40,13 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, type InputTypeHTMLAttribute } from 'vue'
+import {
+  defineEmits,
+  defineProps,
+  onMounted,
+  ref,
+  type InputTypeHTMLAttribute,
+} from 'vue'
 
 interface IFieldInputProps {
   label: string

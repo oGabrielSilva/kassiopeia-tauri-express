@@ -28,7 +28,9 @@
             <UIAvatar />
           </RouterLink>
         </div>
-        <div data-ui-theme><UIThemeButton /></div>
+        <div data-ui-theme>
+          <UIThemeButton />
+        </div>
       </div>
       <button class="hide" type="button" @click="onClickHide" />
       <button class="close-app" type="button" @click="onClickCloseApp" />
@@ -37,14 +39,14 @@
 </template>
 
 <script setup lang="ts">
-import UIAvatar from '@app/components/user/UIAvatar.vue'
 import UIBurgerButton from '@app/components/shared/UIBurgerButton.vue'
-import { useI18n } from '@app/stores/useI18n'
-import { appWindow } from '@tauri-apps/api/window'
 import UIThemeButton from '@app/components/shared/UIThemeButton.vue'
-import { ref, onMounted, onUpdated } from 'vue'
-import { useSafeArea } from '@app/stores/useSafeArea'
+import UIAvatar from '@app/components/user/UIAvatar.vue'
 import { useHome } from '@app/stores/useHome'
+import { useI18n } from '@app/stores/useI18n'
+import { useSafeArea } from '@app/stores/useSafeArea'
+import { appWindow } from '@tauri-apps/api/window'
+import { onMounted, onUpdated, ref } from 'vue'
 
 const strings = useI18n()
 const safeArea = useSafeArea()

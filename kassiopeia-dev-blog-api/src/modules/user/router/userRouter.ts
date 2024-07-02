@@ -13,6 +13,8 @@ userRouter.get(
   adapter(onlyEditorMiddleware),
   adapter(UserController.getAllPosts)
 );
+userRouter.get('/user/:email', adapter(UserController.get));
+userRouter.get('/user', adapter(UserController.getAll));
 
 userRouter.get('/users/avatar/:id', adapter(UserController.getAvatar));
 

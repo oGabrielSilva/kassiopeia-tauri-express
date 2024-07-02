@@ -20,8 +20,8 @@ export default {
   await: 'Aguarde...',
   avatarTitle: 'Foto de perfil de -. Clique para acessar o perfil',
   icon: 'Ícone',
-
-  title: 'Faça login para continuar',
+  title: 'Título',
+  sessionTitle: 'Faça login para continuar',
   titleHelper:
     'Área Restrita: Entre com as credenciais adequadas e acesse o poder',
   emailPlaceholder: 'missallsunday@kassiopeia.dev',
@@ -112,4 +112,22 @@ export default {
   disableStackModalTitle: 'Desabilitar #',
   emptyStacks: 'Nenhuma stack cadastrada',
   viewWriteTitle: 'Escreva uma nova publicação',
+  writePostFormTitle:
+    'Tem algo legal para compartilhar? Um novo post é a solução',
+  keywordsPlaceholder:
+    'Adicione palavras-chave relevantes para que seu conteúdo seja facilmente encontrado na pesquisa',
+  keywords: 'Palavras-chave',
+  keywordAlreadyExists: 'Palavra-chave já foi registrada',
+  removeKeyword: 'Remover palavra-chave #?',
+  zeroKeywords: 'Nenhuma palavra-chave adicionada',
+  selectFontLabel: 'Selecione a fonte da postagem (poderá mudar depois)',
+  selectLangLabel: 'Selecione o idioma da postagem (poderá mudar depois)',
+  selectEditor: 'Adicione outros editores',
+  editors: 'Editores',
+  editorsEmpty: 'Não há outros editores cadastrados',
+  reloadList: 'Atualizar lista',
+  avatar: 'Avatar',
+  removeEditor: 'Remover editor',
+  remove: 'Remover',
+  submit: 'Submeter',
 }

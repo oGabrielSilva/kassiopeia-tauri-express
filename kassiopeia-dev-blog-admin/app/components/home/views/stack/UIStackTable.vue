@@ -16,23 +16,29 @@
       </thead>
       <tbody>
         <tr v-if="home.stacks.stacks.length < 1">
-          <td colspan="5">{{ strings.emptyStacks }}</td>
+          <td colspan="5">
+            {{ strings.emptyStacks }}
+          </td>
         </tr>
-        <tr v-for="(stack, index) in home.stacks.stacks">
-          <th @click="showStack(stack)">{{ index }}</th>
-          <td @click="showStack(stack)">{{ stack.name }}</td>
+        <tr v-for="(stack, index) in home.stacks.stacks" :key="index">
+          <th @click="showStack(stack)">
+            {{ index }}
+          </th>
           <td @click="showStack(stack)">
-            {{ description(stack.description) }}
+            {{ stack.name }}
           </td>
           <td @click="showStack(stack)">
-            {{ description(stack.metaDescription) }}
+            {{ minimizeDescriptionField(stack.description) }}
+          </td>
+          <td @click="showStack(stack)">
+            {{ minimizeDescriptionField(stack.metaDescription) }}
           </td>
           <td>
             <div class="buttons are-small">
               <button
-                @click="stackForEditRef = stack"
                 class="button"
                 type="button"
+                @click="stackForEditRef = stack"
               >
                 <span class="icon is-small">
                   <font-awesome-icon icon="pen-to-square" />
@@ -40,8 +46,8 @@
               </button>
 
               <button
-                @click="stackForDeleteRef = stack"
                 class="button is-danger is-outlined"
+                @click="stackForDeleteRef = stack"
               >
                 <span class="icon is-small">
                   <font-awesome-icon icon="trash-can" />
@@ -55,18 +61,18 @@
 
     <div class="py-3 is-flex is-justify-content-right">
       <button
-        @click="updateStacks"
         class="button is-ghost p-0 m-0"
         type="button"
+        @click="updateStacks"
       >
         {{ strings.update }}
       </button>
     </div>
 
     <UIStackForm
-      @hide="stackForEditRef = void 0"
-      :edit-stack="stackForEditRef"
       v-if="!!stackForEditRef"
+      :edit-stack="stackForEditRef"
+      @hide="stackForEditRef = void 0"
     />
 
     <UIModal
@@ -105,19 +111,20 @@
 </template>
 
 <script setup lang="ts">
-import UIModal from '@app/components/shared/UIModal.vue'
 import UIStackForm from '@app/components/home/views/stack/UIStackForm.vue'
+import UIModal from '@app/components/shared/UIModal.vue'
 import type { Stack } from '@app/models/Stack'
 import { useHome } from '@app/stores/useHome'
 import { useI18n } from '@app/stores/useI18n'
-import { reactive, ref } from 'vue'
+import { JsonAPI } from '@app/utilities/JsonAPI'
+import { forbidden } from '@app/utilities/forbidden'
+import { isForbidden } from '@app/utilities/isForbidden'
+import { minimizeDescriptionField } from '@app/utilities/minimizeDescriptionField'
 import {
   requireKassiopeiaScreenLocker,
   requireKassiopeiaToaster,
 } from '@lib/kassiopeia-tools'
-import { JsonAPI } from '@app/utilities/JsonAPI'
-import { isForbidden } from '@app/utilities/isForbidden'
-import { forbidden } from '@app/utilities/forbidden'
+import { defineEmits, reactive, ref } from 'vue'
 
 const modalProperties = reactive({
   label: '',
@@ -134,12 +141,6 @@ const strings = useI18n()
 const home = useHome()
 
 const emits = defineEmits<{ updateStacks: [] }>()
-
-function description(desc: string | null) {
-  if (!desc) return ''
-  if (desc.length > 100) return desc.slice(0, 100) + '...'
-  return desc
-}
 
 function showStack(stack: Stack) {
   modalProperties.isModalHidden = false
@@ -168,7 +169,7 @@ async function disableStack() {
     }
 
     home.updateStacks(
-      home.stacks.stacks.filter((st) => st.name !== stack?.name ?? ''),
+      home.stacks.stacks.filter((st) => st.name !== (stack?.name ?? '')),
     )
     toaster.success(strings.actionSuccess)
   } catch (error) {

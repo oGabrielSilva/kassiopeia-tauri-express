@@ -1,16 +1,15 @@
 <template>
   <div>
     <form
+      v-if="props.isModalLinkVisible"
       @submit="
         (e) => {
           e.preventDefault()
           submitLink()
         }
       "
-      v-if="props.isModalLinkVisible"
     >
       <UIModal
-        @hide="() => props.hideModalLinkVisible()"
         :title="strings.modalAddLinkTitle"
         :cancel-button="{ text: strings.cancel }"
         :success-button="{
@@ -18,6 +17,7 @@
           hideModal: false,
           type: 'submit',
         }"
+        @hide="() => props.hideModalLinkVisible()"
       >
         <div ref="linkNameRef">
           <UIFieldInput
@@ -63,13 +63,13 @@ import { JsonAPI } from '@app/utilities/JsonAPI'
 import { forbidden } from '@app/utilities/forbidden'
 import { isForbidden } from '@app/utilities/isForbidden'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
+import type { ToasterKassiopeiaTool } from 'kassiopeia-tools'
 import {
   AnimationKassiopeiaTool,
   ScreenLockerKassiopeiaTool,
   ValidationKassiopeiaTool,
 } from 'kassiopeia-tools'
-import type { ToasterKassiopeiaTool } from 'kassiopeia-tools'
-import { onMounted, ref } from 'vue'
+import { defineProps, onMounted, ref } from 'vue'
 
 interface IUIFormSocialProps {
   isModalLinkVisible: boolean

@@ -1,23 +1,24 @@
-import type { SocialMedia, User } from '@prisma/client';
 import { DBClient } from '@/db/DBClient';
 import { BadRequest } from '@/exceptions/class/BadRequest';
 import { Conflict } from '@/exceptions/class/Conflict';
-import { Kassiopeia } from '@/validation/kassiopeia';
-import { UserEntity } from '../entities/UserEntity';
-import { PasswordEncryptor } from '@/utilities/PasswordEncryptor';
-import { JWT } from '@/jwt/JWT';
+import { Forbidden } from '@/exceptions/class/Forbidden';
+import { InternalServerError } from '@/exceptions/class/InternalServerError';
 import { NotFound } from '@/exceptions/class/NotFound';
 import { Unauthorized } from '@/exceptions/class/Unauthorized';
-import { UserService } from '../services/UserService';
-import { ImageUploadService } from '@/services/ImageUploadService';
-import { InternalServerError } from '@/exceptions/class/InternalServerError';
-import stream from 'stream';
-import { Protocol } from '@/utilities/Protocol';
-import { Forbidden } from '@/exceptions/class/Forbidden';
-import { IdGen } from '@/utilities/IdGen';
-import { EmailService } from '@/modules/email/services/EmailService';
+import { JWT } from '@/jwt/JWT';
 import { EmailTemplate } from '@/modules/email/EmailTemplate';
+import { EmailService } from '@/modules/email/services/EmailService';
 import { PostEntity } from '@/modules/post/entities/PostEntity';
+import { ImageUploadService } from '@/services/ImageUploadService';
+import { IdGen } from '@/utilities/IdGen';
+import { PasswordEncryptor } from '@/utilities/PasswordEncryptor';
+import { Protocol } from '@/utilities/Protocol';
+import { Kassiopeia } from '@/validation/kassiopeia';
+import type { Role, SocialMedia, User } from '@prisma/client';
+import { ValidationKassiopeiaTool } from 'kassiopeia-tools';
+import stream from 'stream';
+import { UserEntity } from '../entities/UserEntity';
+import { UserService } from '../services/UserService';
 
 export class UserController {
   public static get AVATAR_PATH() {
@@ -38,6 +39,43 @@ export class UserController {
       throw new BadRequest(i18n!.passwordInvalid);
 
     return { email, password };
+  }
+
+  public static async get(req: IRequest, res: IResponse) {
+    const { email } = req.params;
+    if (!email || !ValidationKassiopeiaTool.get().isEmailValid(email)) throw new NotFound();
+
+    const user = await DBClient.get().user.findUnique({ where: { email } });
+    if (!user) throw new NotFound();
+
+    res.status(200).json(UserEntity.from(user).toDTO());
+  }
+
+  public static async getAll(req: IRequest, res: IResponse) {
+    let size = Number(req.query.size);
+    let skip = Number(req.query.skip);
+    const role =
+      typeof req.query.role === 'string' ? (req.query.role.toLocaleUpperCase() as Role) : null;
+
+    if (!size || Number.isNaN(size)) size = 25;
+    if (!skip || Number.isNaN(skip)) skip = 0;
+    try {
+      const users = (
+        await DBClient.get().user.findMany({
+          skip,
+          take: size,
+          ...(role !== null
+            ? {
+                where: { authority: role, ...(role !== 'COMMON' ? { isEmailChecked: true } : {}) },
+              }
+            : {}),
+        })
+      ).map((user) => UserEntity.from(user).toDTO());
+
+      res.status(200).json(users);
+    } catch (error) {
+      res.status(200).json([]);
+    }
   }
 
   public static async store(req: IRequest<User>, res: IResponse) {
