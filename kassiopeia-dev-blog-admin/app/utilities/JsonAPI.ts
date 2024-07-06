@@ -77,7 +77,9 @@ export class JsonAPI {
       const json = await response.json()
       if (response.ok) result.body = json
       else result.error = Exception.from(json)
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+    }
 
     return result
   }

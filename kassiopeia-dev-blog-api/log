@@ -3070,3 +3070,30 @@ C:\Developer\kassiopeia-dev-blog\kassiopeia-dev-blog-api\src\modules\user\contro
        })
 
 Invalid value for argument `authority`. Expected Role.
+[Wed, 03 Jul 2024 17:27:26 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 17:46:50 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 17:47:18 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 17:50:14 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 17:51:21 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 18:17:17 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 18:17:42 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Wed, 03 Jul 2024 18:49:24 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user [#method]: PATCH [#original]: 
+[Wed, 03 Jul 2024 19:45:46 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Wed, 03 Jul 2024 19:55:29 GMT] [#ID]: BadRequest [#message]: É requerido os atributos de font (face, generic e size) [#status]: 400 [#path]: /post [#method]: POST [#original]: É requerido os atributos de font (face, generic e size)
+[Wed, 03 Jul 2024 19:56:07 GMT] [#ID]: BadRequest [#message]: A meta descrição precisa ter entre 50 e 160 caracteres [#status]: 400 [#path]: /post [#method]: POST [#original]: A meta descrição precisa ter entre 50 e 160 caracteres
+[Thu, 04 Jul 2024 16:40:27 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Thu, 04 Jul 2024 16:45:22 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Thu, 04 Jul 2024 16:46:52 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Thu, 04 Jul 2024 17:48:24 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /post [#method]: POST [#original]: 
+[Fri, 05 Jul 2024 21:01:37 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/post [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:05:53 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/post [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:06:03 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /user/post [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:06:11 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:38:33 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:41:07 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:41:37 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Fri, 05 Jul 2024 23:42:08 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Fri, 05 Jul 2024 23:43:51 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Sat, 06 Jul 2024 00:18:37 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Sat, 06 Jul 2024 00:59:50 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Sat, 06 Jul 2024 01:13:09 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 

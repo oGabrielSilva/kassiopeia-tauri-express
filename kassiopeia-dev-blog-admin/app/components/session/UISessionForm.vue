@@ -49,7 +49,7 @@
     </div>
 
     <div class="is-flex g-1 pt-5 is-justify-content-end">
-      <button type="button" @click="methods.signUp" class="button">
+      <button type="button" class="button" @click="methods.signUp">
         {{ strings.signUp }}
       </button>
       <button type="submit" class="button is-primary is-outlined">
@@ -60,18 +60,18 @@
 </template>
 
 <script setup lang="ts">
-import * as kassiopeia from '@lib/kassiopeia-tools'
-import { onMounted, reactive, ref, watch } from 'vue'
-import { RouterLink, useRouter } from 'vue-router'
-import { useI18n } from '@app/stores/useI18n'
-import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
-import { JsonAPI } from '@app/utilities/JsonAPI'
-import { useAuth } from '@app/stores/useAuth'
-import type { ISessionResponse } from '@app/auth/types'
 import { User } from '@app/auth/models/User'
-import { emit } from '@tauri-apps/api/event'
+import type { ISessionResponse } from '@app/auth/types'
+import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
+import { useAuth } from '@app/stores/useAuth'
+import { useI18n } from '@app/stores/useI18n'
+import { JsonAPI } from '@app/utilities/JsonAPI'
+import * as kassiopeia from '@lib/kassiopeia-tools'
 import app from '@resources/config/app.json'
+import { emit } from '@tauri-apps/api/event'
 import { appWindow } from '@tauri-apps/api/window'
+import { onMounted, reactive, ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
 const isForbidden = location.search.indexOf('forbidden=true') > -1
 
@@ -85,18 +85,13 @@ const password = reactive({ isValid: false, value: '' })
 const passwordInputContainer = ref<HTMLElement>()
 
 const methods = reactive({
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onEmailImputed(_: string) {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   onPasswordImputed(_: string) {},
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   sessionUp: async (_: Event) => {},
   signUp: async () => {},
-})
-
-if (auth.isLoggedIn) {
-  router.push('/')
-}
-
-watch(auth, () => {
-  if (auth.isLoggedIn) router.push('/')
 })
 
 onMounted(async () => {
@@ -176,6 +171,7 @@ onMounted(async () => {
           return
         }
         auth.update(User.from(user), token)
+        router.push('/')
       }
     } catch (error) {
       console.log(error)

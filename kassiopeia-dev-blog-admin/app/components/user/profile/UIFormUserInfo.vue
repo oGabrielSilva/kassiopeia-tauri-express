@@ -21,10 +21,10 @@
             @click="() => avatarInputRef?.click()"
           />
           <input
+            v-show="false"
             ref="avatarInputRef"
             accept="image/jpeg, image/png, image/webp"
             type="file"
-            v-show="false"
             @input="onAvatarChanged"
           />
         </div>
@@ -67,7 +67,9 @@
             </span>
           </template>
         </UIFieldTextArea>
-        <p class="help">{{ strings.bioHelper }}</p>
+        <p class="help">
+          {{ strings.bioHelper }}
+        </p>
       </div>
 
       <div class="py-3 is-flex is-align-items-end is-flex-direction-column">
@@ -80,12 +82,16 @@
 </template>
 
 <script setup lang="ts">
-import app from '@resources/config/app.json'
-import { useAuth } from '@app/stores/useAuth'
-import { onMounted, ref } from 'vue'
-import { useRouter } from 'vue-router'
+import type { ISessionResponse } from '@app/auth/types'
 import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
+import UIFieldTextArea from '@app/components/shared/UIFieldTextArea.vue'
+import { useAuth } from '@app/stores/useAuth'
 import { useI18n } from '@app/stores/useI18n'
+import { JsonAPI } from '@app/utilities/JsonAPI'
+import { forbidden } from '@app/utilities/forbidden'
+import { isForbidden } from '@app/utilities/isForbidden'
+import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
+import app from '@resources/config/app.json'
 import {
   AnimationKassiopeiaTool,
   ImageKassiopeiaProcessingTool,
@@ -93,12 +99,8 @@ import {
   ToasterKassiopeiaTool,
   ValidationKassiopeiaTool,
 } from 'kassiopeia-tools'
-import UIFieldTextArea from '@app/components/shared/UIFieldTextArea.vue'
-import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
-import { JsonAPI } from '@app/utilities/JsonAPI'
-import type { ISessionResponse } from '@app/auth/types'
-import { isForbidden } from '@app/utilities/isForbidden'
-import { forbidden } from '@app/utilities/forbidden'
+import { onMounted, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const strings = useI18n()
 const router = useRouter()

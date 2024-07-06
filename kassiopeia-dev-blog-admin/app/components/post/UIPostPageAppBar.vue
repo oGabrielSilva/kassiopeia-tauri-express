@@ -4,16 +4,36 @@
     data-tauri-drag-region
     class="bar-container px-3 py-2 is-flex is-justify-content-space-between is-align-items-center"
   >
-    <h1
+    <div
+      data-ui-left
+      class="is-flex is-justify-content-center g-1 is-align-items-center"
       data-tauri-drag-region
-      class="title-user-select title is-7 is-family-monospace mb-0"
     >
-      {{ strings.appName }}
-    </h1>
+      <h1
+        data-tauri-drag-region
+        class="title-user-select title is-7 is-family-monospace mb-0"
+      >
+        {{ strings.appName }}
+      </h1>
+    </div>
 
     <div class="is-flex is-align-items-center g-1">
-      <div class="pr-5">
-        <UIThemeButton />
+      <div class="r-options">
+        <div>
+          <button class="button is-ghost py-0 pr-0" @click="$router.back()">
+            <span class="icon is-small">
+              <font-awesome-icon icon="chevron-left" />
+            </span>
+          </button>
+        </div>
+        <div>
+          <RouterLink to="/user">
+            <UIAvatar />
+          </RouterLink>
+        </div>
+        <div data-ui-theme>
+          <UIThemeButton />
+        </div>
       </div>
       <button class="hide" type="button" @click="onClickHide" />
       <button class="close" type="button" @click="onClickClose" />
@@ -23,6 +43,7 @@
 
 <script setup lang="ts">
 import UIThemeButton from '@app/components/shared/UIThemeButton.vue'
+import UIAvatar from '@app/components/user/UIAvatar.vue'
 import { useI18n } from '@app/stores/useI18n'
 import { useSafeArea } from '@app/stores/useSafeArea'
 import { appWindow } from '@tauri-apps/api/window'
@@ -90,5 +111,20 @@ onMounted(() => {
 
 .hide:hover {
   background: var(--bulma-warning-70);
+}
+
+.r-options {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+[data-ui-theme],
+[data-ui-theme] * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

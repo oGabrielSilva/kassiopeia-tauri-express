@@ -28,6 +28,12 @@
       "@i18n/*": ["i18n/*"]
     }
   },
-  "include": ["app/**/*.ts", "app/**/*.d.ts", "app/**/*.tsx", "app/**/*.vue"],
+  "include": [
+    "app/**/*.ts",
+    "app/**/*.d.ts",
+    "app/**/*.tsx",
+    "app/**/*.vue",
+    "global.d.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

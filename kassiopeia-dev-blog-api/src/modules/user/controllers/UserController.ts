@@ -317,7 +317,12 @@ export class UserController {
   public static async getAllPosts(_: IRequest, res: IResponse) {
     const posts = (
       await DBClient.get().post.findMany({
-        where: { createdBy: res.locals.session?.id ?? '' },
+        where: {
+          OR: [
+            { createdBy: res.locals.session?.id ?? '' },
+            { editorsId: { has: res.locals.session?.id } },
+          ],
+        },
       })
     ).map(async (p) => await PostEntity.from(p).toDTO());
 

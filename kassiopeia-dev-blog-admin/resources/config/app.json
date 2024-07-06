@@ -2,6 +2,8 @@
   "api": "http://127.0.0.1:3001",
   "sessionEventAnotherWindowKey": "auth__evn",
   "AVATAR_MAX_WIDTH": 3145728,
+  "STORAGE_KEY_TOKEN": "@key__auth__token",
+  "STORAGE_KEY_USER": "@key__auth__user",
   "langOptions": [
     {
       "display": "Português (Brasil, pt-BR)",

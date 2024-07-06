@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
 
-export type TLayouts = 'DEFAULT' | 'SESSION' | 'USER_PAGE'
+export type TLayouts = 'DEFAULT' | 'SESSION' | 'USER_PAGE' | 'POST_PAGE'
 
 export const useLayout = defineStore('Layout', () => {
   const layoutRef = ref<TLayouts>('DEFAULT')

@@ -7,14 +7,19 @@
     <section v-if="view === 'WRITE'" class="container">
       <UIWritePostView />
     </section>
+
+    <section v-if="view === 'MY_POSTS'" class="container">
+      <UIPostList />
+    </section>
   </div>
 </template>
 
 <script setup lang="ts">
-import UIStacksHomeView from '@app/components/home/views/UIStacksHomeView.vue';
-import UIWritePostView from '@app/components/home/views/UIWritePostView.vue';
-import { useHome } from '@app/stores/useHome';
-import { computed } from 'vue';
+import UIPostList from '@app/components/home/views/UIPostList.vue'
+import UIStacksHomeView from '@app/components/home/views/UIStacksHomeView.vue'
+import UIWritePostView from '@app/components/home/views/UIWritePostView.vue'
+import { useHome } from '@app/stores/useHome'
+import { computed } from 'vue'
 
 const home = useHome()
 

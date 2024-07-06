@@ -1,3 +1,4 @@
+import { emit } from '@tauri-apps/api/event'
 import { WebviewWindow } from '@tauri-apps/api/window'
 
 interface IWinProps {
@@ -11,7 +12,8 @@ interface IWinProps {
 }
 
 export function generateWinw(url: string, props?: IWinProps) {
-  const win = new WebviewWindow('Session', {
+  const label = 'label-'.concat(Date.now().toString(36)) + Date.now().toString()
+  const win = new WebviewWindow(label, {
     center: props?.center ?? true,
     height: props?.height ?? 480,
     width: props?.width ?? 620,
@@ -22,7 +24,11 @@ export function generateWinw(url: string, props?: IWinProps) {
     url,
   })
 
-  win.once('tauri://error', function (e) {
+  win.once('tauri://created', () => {
+    emit('new-wind', { label })
+  })
+
+  win.once('tauri://error', (e) => {
     console.log(e)
   })
 

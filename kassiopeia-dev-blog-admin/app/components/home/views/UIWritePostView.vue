@@ -10,7 +10,15 @@
     </header>
 
     <section class="py-5">
-      <form class="pt-5">
+      <form
+        class="pt-5"
+        @submit="
+          (e) => {
+            e.preventDefault()
+            submit()
+          }
+        "
+      >
         <UIFieldInput
           has-icon-left
           input-id="inp-title"
@@ -55,7 +63,7 @@
             @on:input="
               (desc) => {
                 payload.metaDescription = desc
-                isMetaDescriptionValid(desc)
+                isMetaDescValid = isMetaDescriptionValid(desc)
               }
             "
           >
@@ -65,6 +73,7 @@
               </span>
             </template>
           </UIFieldTextArea>
+          <small class="help">{{ payload.metaDescription.length }}</small>
           <p class="help">
             {{ strings.metaDescriptionInfo }}
           </p>
@@ -227,8 +236,12 @@
               type="text"
               :placeholder="strings.keywordsPlaceholder"
               @keydown="
-                (e) =>
-                  e.key.toLocaleLowerCase() === 'enter' ? addKeyword() : void 0
+                (e) => {
+                  if (e.key.toLocaleLowerCase() === 'enter') {
+                    e.preventDefault()
+                    addKeyword()
+                  }
+                }
               "
             />
           </div>
@@ -288,14 +301,23 @@ import UIFieldInput from '@app/components/shared/UIFieldInput.vue'
 import UIFieldTextArea from '@app/components/shared/UIFieldTextArea.vue'
 import UIModal from '@app/components/shared/UIModal.vue'
 import UIAvatar from '@app/components/user/UIAvatar.vue'
+import { Post } from '@app/models/Post'
 import type { Stack } from '@app/models/Stack'
 import { useI18n } from '@app/stores/useI18n'
+import { usePost } from '@app/stores/usePost'
+import { JsonAPI } from '@app/utilities/JsonAPI'
+import { forbidden } from '@app/utilities/forbidden'
+import { isForbidden } from '@app/utilities/isForbidden'
 import { isMetaDescriptionValid } from '@app/utilities/isMetaDescriptionValid'
 import { minimizeDescriptionField } from '@app/utilities/minimizeDescriptionField'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import app from '@resources/config/app.json'
-import type { ToasterKassiopeiaTool } from 'kassiopeia-tools'
+import {
+  ScreenLockerKassiopeiaTool,
+  type ToasterKassiopeiaTool,
+} from 'kassiopeia-tools'
 import { onMounted, reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const keywordsInputRef = ref<HTMLInputElement>()
 
@@ -313,8 +335,11 @@ const isMetaDescValid = ref(isMetaDescriptionValid(payload.metaDescription))
 const removeKeywordRef = ref<string | null>(null)
 
 const strings = useI18n()
+const post = usePost()
+const router = useRouter()
 
 let toaster: ToasterKassiopeiaTool
+const locker = ScreenLockerKassiopeiaTool.get()
 
 function removeKeyword(keyword: string) {
   payload.keywords = payload.keywords.filter((k) => k !== keyword)
@@ -368,6 +393,56 @@ function removePayloadStack(stack: Stack) {
     toaster.animationTool.zoomOutEnd(row).addEventOnCompletion(() => {
       payload.stacks = newPayload
     })
+  }
+}
+
+async function submit() {
+  locker.lock()
+
+  try {
+    const {
+      title,
+      description,
+      metaDescription,
+      keywords,
+      font,
+      lang,
+      editors,
+      stacks,
+    } = payload
+
+    const result = await JsonAPI.request.POST<Post>('/post', {
+      body: {
+        title,
+        description,
+        metaDescription,
+        keywords,
+        font: { face: font.face, generic: font.generic, size: 16 },
+        lang: { code: lang.code, label: lang.label },
+        editors: editors.map((edt) => edt.email),
+        stacks: stacks.map((st) => st.name),
+      },
+    })
+
+    if (isForbidden(result)) return forbidden()
+
+    if (result.error) {
+      toaster.danger(result.error.message)
+      return
+    }
+
+    console.log(result.body)
+    console.log(Post.from(result.body!))
+    if (result.body) {
+      post.nextPost(Post.from(result.body))
+
+      router.push('/post')
+    }
+  } catch (error) {
+    console.log(error)
+    toaster.danger()
+  } finally {
+    locker.unlock()
   }
 }
 

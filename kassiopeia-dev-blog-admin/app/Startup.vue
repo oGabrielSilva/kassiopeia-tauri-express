@@ -22,19 +22,28 @@
     </section>
     <UIFooter />
   </template>
+
+  <template v-if="layout.current === 'POST_PAGE'">
+    <section data-global-section class="global-section">
+      <UIPostPageAppBar />
+      <RouterView />
+    </section>
+    <UIFooter />
+  </template>
 </template>
 
 <script setup lang="ts">
-import UITopAppBar from '@app/components/shared/UITopAppBar.vue'
+import type { ISessionResponse } from '@app/auth/types'
 import UIAppBar from '@app/components/home/UIAppBar.vue'
+import UIPostPageAppBar from '@app/components/post/UIPostPageAppBar.vue'
 import UIFooter from '@app/components/shared/UIFooter.vue'
-import { useLayout } from '@app/stores/useLayout'
+import UITopAppBar from '@app/components/shared/UITopAppBar.vue'
 import UIUserPageAppBar from '@app/components/user/UIUserPageAppBar.vue'
 import { useAuth } from '@app/stores/useAuth'
-import { listen } from '@tauri-apps/api/event'
-import type { ISessionResponse } from '@app/auth/types'
-import app from '@resources/config/app.json'
+import { useLayout } from '@app/stores/useLayout'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
+import app from '@resources/config/app.json'
+import { listen } from '@tauri-apps/api/event'
 import { useI18n } from './stores/useI18n'
 
 const layout = useLayout()

@@ -1,11 +1,10 @@
 import { User } from '@app/auth/models/User'
 import type { IUser } from '@app/auth/types'
+import avatarPlaceholder from '@resources/svg/user.svg'
 import { defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import avatarPlaceholder from '@resources/svg/user.svg'
 
-const STORAGE_KEY_TOKEN = '@key__auth__token'
-const STORAGE_KEY_USER = '@key__auth__user'
+import { STORAGE_KEY_TOKEN, STORAGE_KEY_USER } from '@resources/config/app.json'
 
 const storage = {
   recoveryTokenStorage() {
@@ -49,8 +48,7 @@ export const useAuth = defineStore('Auth', () => {
   const tokenRef = ref<string | null>(storage.recoveryTokenStorage())
 
   const isLoggedIn = computed(
-    () =>
-      userRef && userRef.value !== null && tokenRef && tokenRef.value !== null,
+    () => userRef.value !== null && tokenRef && tokenRef.value !== null,
   )
 
   const user = computed(() => {
