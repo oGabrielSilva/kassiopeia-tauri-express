@@ -130,4 +130,8 @@ export default {
   removeEditor: 'Remover editor',
   remove: 'Remover',
   submit: 'Submeter',
+  noPostRegistered: 'Nenhuma postagem registrada',
+  updatedAt: 'Atualizado em',
+  by: 'Por',
+  postImgAlt: 'Imagem de capa para a publicação',
 }

@@ -1,13 +1,18 @@
-import { BadRequest } from '@/exceptions/class/BadRequest';
-import type { IPostRequest } from '../types/IPost';
-import { isMetaDescriptionValid } from '@/validation/meta';
-import { PostEntity } from '../entities/PostEntity';
 import { DBClient } from '@/db/DBClient';
+import { BadRequest } from '@/exceptions/class/BadRequest';
 import { Conflict } from '@/exceptions/class/Conflict';
+import { UserEntity } from '@/modules/user/entities/UserEntity';
+import { isMetaDescriptionValid } from '@/validation/meta';
 import type { Font, Lang } from '@prisma/client';
+import { PostEntity } from '../entities/PostEntity';
+import type { IPostRequest } from '../types/IPost';
 
 export class PostService {
   private static instance: PostService;
+
+  public canEdit(user: UserEntity, post: PostEntity) {
+    return post.createdBy === user.id || post.editorsId.includes(user.id);
+  }
 
   public async getAndIncrementView(slug: string) {
     try {
@@ -56,9 +61,7 @@ export class PostService {
   }
 
   public filterAndNormalizeKeywords(keywords: string[]) {
-    return keywords
-      .filter((k) => !['object', 'function', 'undefined', 'symbol'].includes(typeof k))
-      .map((k) => (typeof k === 'string' ? k : String(k)));
+    return keywords.filter((k) => typeof k === 'string');
   }
 
   public isPayloadValid(payload: IPostRequest, i18n: IAppI18n) {

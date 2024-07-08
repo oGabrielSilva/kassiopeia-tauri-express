@@ -21,10 +21,8 @@ export const usePost = defineStore('Post', () => {
   const userPosts = computed(() => userPostsReactive.posts)
 
   function nextPost(post: Post | IPost) {
-    if (post instanceof Post) selectedPostRef.value = post
-    else {
-      selectedPostRef.value = Post.from(post)
-    }
+    const p = Post.from(post)
+    selectedPostRef.value = p
   }
 
   function updateUserPosts(posts?: Post[]) {

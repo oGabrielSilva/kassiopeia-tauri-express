@@ -1,16 +1,17 @@
 import 'dotenv/config';
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import bodyParser from 'body-parser';
-import cors from 'cors';
+
+import { NotFound } from '@/exceptions/class/NotFound';
 import { exceptionMiddleware } from '@/middlewares/exception';
 import { propagateI18n } from '@/middlewares/i18n';
-import globalRouter from '@/routes/global';
-import userRouter from '@/modules/user/router/userRouter';
-import stackRouter from '@/modules/stack/router/stackRouter';
 import postRouter from '@/modules/post/router/postRouter';
+import stackRouter from '@/modules/stack/router/stackRouter';
+import userRouter from '@/modules/user/router/userRouter';
+import globalRouter from '@/routes/global';
 import { adapter } from '@/routes/utilities/adapter';
-import { NotFound } from '@/exceptions/class/NotFound';
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
+import cors from 'cors';
+import express from 'express';
 
 export class Startup {
   private port: number = process.env.PORT ? parseInt(process.env.PORT) : 3000;
@@ -25,8 +26,8 @@ export class Startup {
       })
     );
     this.app.use(cookieParser());
-    this.app.use(bodyParser.json());
-    this.app.use(bodyParser.urlencoded({ extended: false, limit: '2mb' }));
+    this.app.use(bodyParser.json({ limit: '1mb' }));
+    this.app.use(bodyParser.urlencoded({ extended: false, limit: '4mb' }));
   }
 
   private defineRoutes() {

@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 export const useSafeArea = defineStore('SafeArea', () => {
-  const uiAppBarHeight = ref(0)
+  const uiAppBarHeightRef = ref(0)
+
+  const uiAppBarHeight = computed(() => uiAppBarHeightRef.value)
 
   function updateUIAppBarHeight(h: number) {
-    uiAppBarHeight.value = h
+    uiAppBarHeightRef.value = h + 5
   }
 
   return { uiAppBarHeight, updateUIAppBarHeight }

@@ -38,7 +38,10 @@ export class JWT {
           issuer: this.issuer,
           subject: user.email,
         },
-        (err, token) => resolve(err ? '' : token ?? '')
+        (err, token) => {
+          if (err) console.log(err);
+          resolve(err ? '' : token ?? '');
+        }
       );
     });
   }

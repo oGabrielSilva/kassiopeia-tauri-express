@@ -3,8 +3,8 @@ import { useAuth } from '@app/stores/useAuth'
 import app from '@resources/config/app.json'
 import { ValidationKassiopeiaTool } from 'kassiopeia-tools'
 
-interface IJsonAPIOptions {
-  body?: unknown
+interface IAPIOptions {
+  body?: { [key: string]: unknown }
   headers?: Headers
   credentials?: RequestCredentials
 }
@@ -15,12 +15,12 @@ export interface IJsonAPIResult<T = null> {
   error: Exception | null
 }
 
-type TRequestMethod = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE'
+type TRequestMethod = 'POST' | 'PATCH' | 'PUT' | 'DELETE'
 
 const validation = new ValidationKassiopeiaTool()
 
-export class JsonAPI {
-  private static instance: JsonAPI
+export class FormDataAPI {
+  private static instance: FormDataAPI
   private static baseURL = app.api
 
   public static resolvePath(input: string) {
@@ -28,21 +28,20 @@ export class JsonAPI {
       return validation.normalizeURI(input)
 
     return validation.normalizeURI(
-      (JsonAPI.baseURL.endsWith('/')
-        ? JsonAPI.baseURL
-        : JsonAPI.baseURL + '/'
+      (FormDataAPI.baseURL.endsWith('/')
+        ? FormDataAPI.baseURL
+        : FormDataAPI.baseURL + '/'
       ).concat(input.startsWith('/') ? input.slice(1) : input),
     )
   }
 
-  private requireHeaders(options?: IJsonAPIOptions) {
+  private requireHeaders(options?: IAPIOptions) {
     const headers = new Headers()
     if (options && options.headers) {
       options.headers.forEach((headerValue, headerKey) =>
         headers.set(headerKey, headerValue),
       )
     }
-    headers.set('Content-Type', 'application/json')
 
     const auth = useAuth()
 
@@ -54,15 +53,23 @@ export class JsonAPI {
   private async makeRequest<T = null>(
     input: string,
     method: TRequestMethod,
-    options?: IJsonAPIOptions,
+    options?: IAPIOptions,
   ) {
     const init: RequestInit = {}
     init.method = method
 
     if (options) {
       if (options.body && typeof options.body !== 'string') {
-        options.body = JSON.stringify(options.body)
-        init.body = options.body as string
+        const data = new FormData()
+        for (const key in options.body) {
+          if (Array.isArray(options.body[key])) {
+            options.body[key].forEach((value) => {
+              data.append(key + '[]', value)
+            })
+          } else data.set(key, options.body[key] as string)
+        }
+
+        init.body = data
       }
 
       if (options.credentials) init.credentials = options.credentials
@@ -71,7 +78,7 @@ export class JsonAPI {
     const headers = this.requireHeaders(options)
     init.headers = headers
 
-    const response = await fetch(JsonAPI.resolvePath(input), init)
+    const response = await fetch(FormDataAPI.resolvePath(input), init)
     const result: IJsonAPIResult<T> = { body: null, error: null, response }
 
     try {
@@ -85,30 +92,26 @@ export class JsonAPI {
     return result
   }
 
-  public async GET<T = null>(input: string, options?: IJsonAPIOptions) {
-    return await this.makeRequest<T>(input, 'GET', options)
-  }
-
-  public async POST<T = null>(input: string, options?: IJsonAPIOptions) {
+  public async POST<T = null>(input: string, options?: IAPIOptions) {
     return await this.makeRequest<T>(input, 'POST', options)
   }
 
-  public async PATCH<T = null>(input: string, options?: IJsonAPIOptions) {
+  public async PATCH<T = null>(input: string, options?: IAPIOptions) {
     return await this.makeRequest<T>(input, 'PATCH', options)
   }
 
-  public async PUT<T = null>(input: string, options?: IJsonAPIOptions) {
+  public async PUT<T = null>(input: string, options?: IAPIOptions) {
     return await this.makeRequest<T>(input, 'PUT', options)
   }
 
-  public async DELETE<T = null>(input: string, options?: IJsonAPIOptions) {
+  public async DELETE<T = null>(input: string, options?: IAPIOptions) {
     return await this.makeRequest<T>(input, 'DELETE', options)
   }
 
   public static get request() {
-    if (!JsonAPI.instance) {
-      JsonAPI.instance = new JsonAPI()
+    if (!FormDataAPI.instance) {
+      FormDataAPI.instance = new FormDataAPI()
     }
-    return JsonAPI.instance
+    return FormDataAPI.instance
   }
 }

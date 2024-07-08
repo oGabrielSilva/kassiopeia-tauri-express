@@ -7,12 +7,8 @@
     <div
       data-ui-left
       class="is-flex is-justify-content-center g-1 is-align-items-center"
-      data-tauri-drag-region
     >
-      <h1
-        data-tauri-drag-region
-        class="title-user-select title is-7 is-family-monospace mb-0"
-      >
+      <h1 class="title-user-select title is-7 is-family-monospace mb-0">
         {{ strings.appName }}
       </h1>
     </div>
@@ -33,12 +29,12 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from '@app/stores/useI18n'
-import { appWindow } from '@tauri-apps/api/window'
-import UIThemeButton from '@app/components/shared/UIThemeButton.vue'
 import UIRouteBackChevron from '@app/components/shared/UIRouteBackChevron.vue'
-import { ref, onMounted } from 'vue'
+import UIThemeButton from '@app/components/shared/UIThemeButton.vue'
+import { useI18n } from '@app/stores/useI18n'
 import { useSafeArea } from '@app/stores/useSafeArea'
+import { appWindow } from '@tauri-apps/api/window'
+import { onMounted, ref } from 'vue'
 
 const strings = useI18n()
 const safeArea = useSafeArea()

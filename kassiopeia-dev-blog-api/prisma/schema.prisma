@@ -55,7 +55,8 @@ model Post {
   stacksId        String[]
   lang            Lang
   editorsId       String[]
-  images          String[]
+  mediaImage      Media?
+  images          Media[]
   isPublished     Boolean          @default(false)
   publishedBy     String?          @db.ObjectId
   isLocked        Boolean          @default(false)
@@ -64,6 +65,11 @@ model Post {
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @default(now()) @updatedAt
   updatedBy       String           @db.ObjectId
+}
+
+type Media {
+  originalURL String
+  publicURL   String
 }
 
 type Lang {

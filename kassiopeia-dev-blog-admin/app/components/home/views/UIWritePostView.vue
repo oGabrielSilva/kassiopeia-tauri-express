@@ -19,6 +19,26 @@
           }
         "
       >
+        <div>
+          <img
+            role="button"
+            class="image is-3by1 is-clickable"
+            :src="postImgSrc"
+            :alt="strings.postImgAlt"
+            @click="imageInputRef?.click()"
+          />
+
+          <div>
+            <input
+              ref="imageInputRef"
+              type="file"
+              class="is-hidden"
+              accept="image/jpeg, image/png, image/webp"
+              @input="onInputFile"
+            />
+          </div>
+        </div>
+
         <UIFieldInput
           has-icon-left
           input-id="inp-title"
@@ -305,6 +325,7 @@ import { Post } from '@app/models/Post'
 import type { Stack } from '@app/models/Stack'
 import { useI18n } from '@app/stores/useI18n'
 import { usePost } from '@app/stores/usePost'
+import { FormDataAPI } from '@app/utilities/FormDataAPI'
 import { JsonAPI } from '@app/utilities/JsonAPI'
 import { forbidden } from '@app/utilities/forbidden'
 import { isForbidden } from '@app/utilities/isForbidden'
@@ -312,7 +333,9 @@ import { isMetaDescriptionValid } from '@app/utilities/isMetaDescriptionValid'
 import { minimizeDescriptionField } from '@app/utilities/minimizeDescriptionField'
 import { requireKassiopeiaToaster } from '@lib/kassiopeia-tools'
 import app from '@resources/config/app.json'
+import imgPlaceholder from '@resources/png/1280x960.png'
 import {
+  ImageKassiopeiaProcessingTool,
   ScreenLockerKassiopeiaTool,
   type ToasterKassiopeiaTool,
 } from 'kassiopeia-tools'
@@ -320,6 +343,7 @@ import { onMounted, reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const keywordsInputRef = ref<HTMLInputElement>()
+const postImgSrc = ref(imgPlaceholder)
 
 const payload = reactive({
   title: '',
@@ -330,9 +354,11 @@ const payload = reactive({
   font: app.fontOptions[0],
   editors: [] as User[],
   stacks: [] as Stack[],
+  media: null as null | Blob,
 })
 const isMetaDescValid = ref(isMetaDescriptionValid(payload.metaDescription))
 const removeKeywordRef = ref<string | null>(null)
+const imageInputRef = ref<HTMLInputElement>()
 
 const strings = useI18n()
 const post = usePost()
@@ -409,6 +435,7 @@ async function submit() {
       lang,
       editors,
       stacks,
+      media,
     } = payload
 
     const result = await JsonAPI.request.POST<Post>('/post', {
@@ -416,7 +443,7 @@ async function submit() {
         title,
         description,
         metaDescription,
-        keywords,
+        keywords: keywords.filter((key) => key && typeof key === 'string'),
         font: { face: font.face, generic: font.generic, size: 16 },
         lang: { code: lang.code, label: lang.label },
         editors: editors.map((edt) => edt.email),
@@ -431,10 +458,30 @@ async function submit() {
       return
     }
 
-    console.log(result.body)
-    console.log(Post.from(result.body!))
     if (result.body) {
-      post.nextPost(Post.from(result.body))
+      let postCreated = Post.from(result.body)
+      if (media) {
+        const mediaResult = await FormDataAPI.request.PATCH(
+          `/post/${postCreated.slug}/media`,
+          {
+            body: { mediaImage: media },
+          },
+        )
+
+        if (isForbidden(mediaResult)) return forbidden()
+
+        if (mediaResult.error) {
+          toaster.danger(mediaResult.error.message)
+        }
+
+        if (mediaResult.body) {
+          postCreated = Post.from(mediaResult.body)
+        }
+      }
+
+      post.updateUserPosts([...post.userPosts, postCreated])
+
+      post.nextPost(postCreated)
 
       router.push('/post')
     }
@@ -444,6 +491,26 @@ async function submit() {
   } finally {
     locker.unlock()
   }
+}
+
+async function onInputFile() {
+  const file =
+    imageInputRef.value && imageInputRef.value.files
+      ? imageInputRef.value.files[0]
+      : null
+  if (!file) {
+    toaster.danger()
+    return
+  }
+  const blob =
+    await ImageKassiopeiaProcessingTool.get().convertFileToWebpBlobWithoutClipping(
+      file,
+      0.75,
+    )
+  const blobURL = URL.createObjectURL(blob)
+
+  postImgSrc.value = blobURL
+  payload.media = blob
 }
 
 onMounted(async () => {
@@ -471,5 +538,12 @@ p.help {
 th,
 td {
   text-align: center !important;
+}
+
+img {
+  object-fit: cover;
+  padding-bottom: 1rem;
+  width: 100%;
+  height: auto;
 }
 </style>

@@ -37,6 +37,10 @@ body,
   min-height: 48px;
 }
 
+[data-tauri-drag-region] {
+  margin-top: 5px;
+}
+
 @media screen and (min-width: 1024px) {
   .navbar-burger[data-ui-burger-button] {
     display: inline-flex;

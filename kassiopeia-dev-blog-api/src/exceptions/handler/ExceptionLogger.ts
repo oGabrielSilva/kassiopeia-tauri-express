@@ -17,12 +17,15 @@ export class ExceptionLogger {
       req.path
     } [#method]: ${req.method.toLocaleUpperCase()} [#original]: ${err.message}`;
     console.log(log);
+    console.log('\n');
+    console.log(err);
+    console.log('\n\n');
 
-    try {
-      await fs.promises.access(ExceptionLogger.filePath);
-    } catch (error) {
-      await fs.promises.writeFile(ExceptionLogger.filePath, '');
-    }
+    // try {
+    //   await fs.promises.access(ExceptionLogger.filePath);
+    // } catch (error) {
+    //   await fs.promises.writeFile(ExceptionLogger.filePath, '');
+    // }
 
     try {
       await fs.promises.appendFile(ExceptionLogger.filePath, log);

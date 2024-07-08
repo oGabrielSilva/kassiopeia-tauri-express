@@ -15,7 +15,8 @@ export class PostEntity implements Post {
     public views: number,
     public stacksId: string[],
     public editorsId: string[],
-    public images: string[],
+    public mediaImage: Media | null,
+    public images: Media[],
     public isPublished: boolean,
     public publishedBy: string | null,
     public isLocked: boolean,
@@ -44,10 +45,14 @@ export class PostEntity implements Post {
       font,
       stacksId,
       lang,
+      mediaImage,
+      images,
       editorsId,
       isPublished,
       isLocked,
       createdBy,
+      updatedAt,
+      createdAt,
     } = this;
 
     const client = DBClient.get();
@@ -97,8 +102,12 @@ export class PostEntity implements Post {
       isPublished,
       isLocked,
       editors,
+      mediaImage: mediaImage?.publicURL ?? null,
+      images: images.map((media) => media.publicURL),
       author,
       stacks,
+      createdAt,
+      updatedAt,
     };
   }
 
@@ -116,6 +125,7 @@ export class PostEntity implements Post {
       o.views ?? 0,
       o.stacksId ?? [],
       o.editorsId ?? [],
+      o.mediaImage ?? null,
       o.images ?? [],
       o.isPublished ?? false,
       o.publishedBy ?? null,

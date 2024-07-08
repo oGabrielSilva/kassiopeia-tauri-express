@@ -4,10 +4,7 @@
     data-tauri-drag-region
     class="bar-container px-3 py-2 is-flex is-justify-content-space-between is-align-items-center"
   >
-    <h1
-      data-tauri-drag-region
-      class="title-user-select title is-7 is-family-monospace mb-0"
-    >
+    <h1 class="title-user-select title is-7 is-family-monospace mb-0">
       {{ strings.appName }}
     </h1>
 

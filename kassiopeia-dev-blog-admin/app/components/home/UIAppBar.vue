@@ -7,16 +7,12 @@
     <div
       data-ui-left
       class="is-flex is-justify-content-center g-1 is-align-items-center"
-      data-tauri-drag-region
     >
       <UIBurgerButton
         :is-active="!home.isNavbarHidden"
         @state:changed="() => home.updateNavbarState()"
       />
-      <h1
-        data-tauri-drag-region
-        class="title-user-select title is-7 is-family-monospace mb-0"
-      >
+      <h1 class="title-user-select title is-7 is-family-monospace mb-0">
         {{ strings.appName }}
       </h1>
     </div>

@@ -27,6 +27,11 @@ export declare global {
     };
   }
 
+  interface Media {
+    originalURL: string;
+    publicURL: string;
+  }
+
   interface INext extends NextFunction {}
 
   interface IAppI18n extends I18n {}

@@ -10,10 +10,15 @@ import type { IPostPatch, IPostRequest } from '@/modules/post/types/IPost';
 import { StackEntity } from '@/modules/stack/entities/StackEntity';
 import { UserEntity } from '@/modules/user/entities/UserEntity';
 import { UserService } from '@/modules/user/services/UserService';
+import { ImageUploadService } from '@/services/ImageUploadService';
+import { Protocol } from '@/utilities/Protocol';
 import { isMetaDescriptionValid } from '@/validation/meta';
 import crypto from 'crypto';
+import stream from 'stream';
 
 export class PostController {
+  public static readonly MEDIA_PATH = 'post/media';
+
   public static async get(req: IRequest<IPostRequest>, res: IResponse) {
     if (!req.params.slug) throw new NotFound();
 
@@ -131,6 +136,64 @@ export class PostController {
 
       res.status(201).json(await PostEntity.from(post).toDTO());
     } else throw new InternalServerError();
+  }
+
+  public static async setMedia(req: IRequest, res: IResponse) {
+    const file = req.file;
+
+    if (file && ['image/jpeg', 'image/png', 'image/webp'].includes(file.mimetype)) {
+      if (!req.params.slug) throw new NotFound();
+      const user = await UserService.service.getAuthenticatedOrThrowForbidden(res.locals.session);
+      const client = DBClient.get();
+      const post = await client.post.findUnique({ where: { slug: req.params.slug } });
+
+      if (!post) throw new NotFound();
+
+      const result = await ImageUploadService.service.uploadBuffer(
+        user,
+        post.id,
+        PostController.MEDIA_PATH,
+        file
+      );
+
+      if (result) {
+        const { privateURL } = result;
+
+        const publicURL = Protocol.serverURI(req).concat(
+          '/post/media/',
+          post.id,
+          '?serial=',
+          Date.now().toString()
+        );
+
+        const data = await DBClient.get().post.update({
+          where: { id: post.id },
+          data: {
+            mediaImage: {
+              originalURL: privateURL,
+              publicURL,
+            },
+          },
+        });
+
+        res.status(200).json(await PostEntity.from(data).toDTO());
+        return;
+      } else throw new InternalServerError();
+    }
+    throw new BadRequest(res.locals.i18n?.imageMimetype);
+  }
+
+  public static async getMedia(req: IRequest, res: IResponse) {
+    const { id } = req.params;
+
+    if (!id) throw new NotFound();
+
+    const body = await ImageUploadService.service.require(PostController.MEDIA_PATH + '/' + id);
+    if (!body) throw new NotFound(res.locals.i18n?.exceptions[404]);
+
+    res.set('Content-Type', body.result.ContentType);
+
+    stream.Readable.from([await body.object!.transformToByteArray()]).pipe(res);
   }
 
   public static async partialUpdate(req: IRequest<IPostPatch>, res: IResponse) {
