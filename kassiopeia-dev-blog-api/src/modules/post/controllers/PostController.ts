@@ -166,7 +166,7 @@ export class PostController {
           Date.now().toString()
         );
 
-        const data = await DBClient.get().post.update({
+        await DBClient.get().post.update({
           where: { id: post.id },
           data: {
             mediaImage: {
@@ -176,7 +176,7 @@ export class PostController {
           },
         });
 
-        res.status(200).json(await PostEntity.from(data).toDTO());
+        res.status(200).json({ url: publicURL });
         return;
       } else throw new InternalServerError();
     }

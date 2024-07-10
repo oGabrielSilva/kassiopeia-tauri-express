@@ -16,3 +16,11 @@
 [Mon, 08 Jul 2024 14:21:32 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
 [Mon, 08 Jul 2024 15:24:35 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
 [Mon, 08 Jul 2024 18:37:45 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Mon, 08 Jul 2024 19:36:00 GMT] [#ID]: Forbidden [#message]: FORBIDDEN [#status]: 403 [#path]: /user/posts [#method]: GET [#original]: 
+[Mon, 08 Jul 2024 19:36:07 GMT] [#ID]: Unauthorized [#message]: Credenciais incorretas [#status]: 401 [#path]: /session [#method]: POST [#original]: Credenciais incorretas
+[Mon, 08 Jul 2024 20:11:00 GMT] [#ID]: NotFound [#message]:  [#status]: 404 [#path]: /favicon.ico [#method]: GET [#original]: 
+[Mon, 08 Jul 2024 22:22:15 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Mon, 08 Jul 2024 22:22:16 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Tue, 09 Jul 2024 00:21:53 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Tue, 09 Jul 2024 01:37:14 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado
+[Tue, 09 Jul 2024 01:37:15 GMT] [#ID]: NotFound [#message]: Recurso não encontrado [#status]: 404 [#path]: /users/avatar/667c4054f81eaf240fe24905 [#method]: GET [#original]: Recurso não encontrado

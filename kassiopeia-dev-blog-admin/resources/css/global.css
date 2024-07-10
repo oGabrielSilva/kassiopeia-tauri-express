@@ -37,8 +37,8 @@ body,
   min-height: 48px;
 }
 
-[data-tauri-drag-region] {
-  margin-top: 5px;
+[data-nano] {
+  top: 1px !important;
 }
 
 @media screen and (min-width: 1024px) {

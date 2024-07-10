@@ -11,7 +11,10 @@ const routes: RouteRecordRaw[] = [
   { path: '/home', component: () => import('@app/pages/HomePage.vue') },
   { path: '/user', component: () => import('@app/pages/UserPage.vue') },
   { path: '/post', component: () => import('@app/pages/PostPage.vue') },
-  { path: '/post/edit', component: () => import('@app/pages/PostEditor.vue') },
+  {
+    path: '/post/edit',
+    component: () => import('@app/pages/PostTextEditor.vue'),
+  },
 ]
 
 const router = createRouter({

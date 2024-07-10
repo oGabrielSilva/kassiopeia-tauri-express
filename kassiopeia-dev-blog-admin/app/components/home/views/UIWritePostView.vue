@@ -461,7 +461,7 @@ async function submit() {
     if (result.body) {
       let postCreated = Post.from(result.body)
       if (media) {
-        const mediaResult = await FormDataAPI.request.PATCH(
+        const mediaResult = await FormDataAPI.request.PATCH<{ url: string }>(
           `/post/${postCreated.slug}/media`,
           {
             body: { mediaImage: media },
@@ -474,8 +474,8 @@ async function submit() {
           toaster.danger(mediaResult.error.message)
         }
 
-        if (mediaResult.body) {
-          postCreated = Post.from(mediaResult.body)
+        if (mediaResult.body?.url) {
+          postCreated.mediaImage = mediaResult.body.url
         }
       }
 

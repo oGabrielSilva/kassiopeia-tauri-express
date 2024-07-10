@@ -25,6 +25,15 @@ export const usePost = defineStore('Post', () => {
     selectedPostRef.value = p
   }
 
+  function updatePostAndList(modifiedPost: Post, selectPost = false) {
+    if (selectPost) nextPost(modifiedPost)
+
+    updateUserPosts([
+      ...userPosts.value.filter((pst) => pst.slug !== modifiedPost.slug),
+      Post.from(modifiedPost),
+    ])
+  }
+
   function updateUserPosts(posts?: Post[]) {
     return new Promise((resolve, reject) => {
       if (Array.isArray(posts)) {
@@ -92,5 +101,6 @@ export const usePost = defineStore('Post', () => {
     userPosts,
     updateUserPosts,
     recoveryUserPostsIfFirstTime,
+    updatePostAndList,
   }
 })

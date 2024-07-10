@@ -134,4 +134,5 @@ export default {
   updatedAt: 'Atualizado em',
   by: 'Por',
   postImgAlt: 'Imagem de capa para a publicação',
+  noPostSelected: 'Nenhum post selecionado',
 }

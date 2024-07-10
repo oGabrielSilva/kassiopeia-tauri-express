@@ -69,6 +69,7 @@ interface IProps {
   options: Array<TOption>
   grid?: number
   isAFontSelector?: boolean
+  initialValue?: TOption
 }
 
 const props = defineProps<IProps>()
@@ -78,7 +79,7 @@ const emits = defineEmits<{
 }>()
 
 const dropdown = ref<HTMLElement>()
-const selected = ref(props.options[0])
+const selected = ref(props.initialValue ? props.initialValue : props.options[0])
 
 function select(opt: TOption) {
   dropdown.value?.classList.remove('is-active')

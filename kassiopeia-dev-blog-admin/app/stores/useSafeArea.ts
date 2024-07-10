@@ -7,7 +7,7 @@ export const useSafeArea = defineStore('SafeArea', () => {
   const uiAppBarHeight = computed(() => uiAppBarHeightRef.value)
 
   function updateUIAppBarHeight(h: number) {
-    uiAppBarHeightRef.value = h + 5
+    uiAppBarHeightRef.value = h
   }
 
   return { uiAppBarHeight, updateUIAppBarHeight }
